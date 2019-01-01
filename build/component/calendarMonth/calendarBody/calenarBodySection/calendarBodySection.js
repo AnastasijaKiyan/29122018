@@ -14,6 +14,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var react_1 = require("react");
+var sectionTask_1 = require("./sectionEvent/sectionTask");
 var CalendarBodySection = /** @class */ (function (_super) {
     __extends(CalendarBodySection, _super);
     function CalendarBodySection(props) {
@@ -21,8 +22,9 @@ var CalendarBodySection = /** @class */ (function (_super) {
     }
     CalendarBodySection.prototype.render = function () {
         return (react_1["default"].createElement("div", { className: "calendarBodySection" },
-            react_1["default"].createElement("div", { className: 'calendarDay' }, this.props.day.day)));
+            react_1["default"].createElement("div", { className: 'calendarDay' }, this.props.day.day),
+            react_1["default"].createElement(sectionTask_1["default"], null)));
     };
     return CalendarBodySection;
-}(react_1["default"].Component));
+}(react_1.Component));
 exports["default"] = CalendarBodySection;

@@ -36,7 +36,7 @@ var HeaderTitle = /** @class */ (function (_super) {
                 item.name,
                 " "); })),
             react_1["default"].createElement("div", { className: "headerToggleData" },
-                react_1["default"].createElement("img", { src: "../../../../style/pict/l.png" }),
+                react_1["default"].createElement("img", { src: "../../../../style/pict/r.png" }),
                 react_1["default"].createElement("span", null, "Today"),
                 react_1["default"].createElement("img", { src: "../../../../style/pict/r.png" }))));
     };

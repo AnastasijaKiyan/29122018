@@ -122,7 +122,8 @@ body
 
 
             .headerToggleData
-                width: 112px
+                display: flex
+                width: 113px
                 justify-content: space-between
                 color: $color-green
 
@@ -178,23 +179,26 @@ body
         color: $color-white
 
 .allSectionTasks
-    max-height: 48px
-    height: auto
+    display: flex
+    flex-direction: column
+    align-content: space-between
+    height: 48px
     width: 100%
     margin-top: 39px
 
     .sectionTask
         height: 8px
         width: 100%
-        justify-content: space-between
         background-color: $color-green
         color: $color-white
-        font-size: 18px
+        font-size: 7px
         font-family: 'ubuntu-regular'
+        margin-bottom: 2px
 
 
     .hoveredTask
-
+        height: 20px
+        width: 100%
 
 .taskDescription
 

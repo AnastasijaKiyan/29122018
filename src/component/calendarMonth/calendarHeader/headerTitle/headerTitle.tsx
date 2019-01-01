@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { ICondition } from "../../../../type/ICondition";
 
 interface TypeDate {
   id: number;
@@ -27,6 +26,14 @@ class HeaderTitle extends Component<Props, State> {
     this.setState({ typeDateSelectedId: id });
   }
 
+  left(): void {
+    console.log("left");
+  }
+
+  right(): void {
+    console.log("right");
+  }
+
   render() {
     return (
       <div className="headerTitle">
@@ -41,9 +48,9 @@ class HeaderTitle extends Component<Props, State> {
         }
         </ul>
         <div className="headerToggleData">
-          <img src="../../../../style/pict/r.png" />
+          <span><img src="./pict/l.png" onClick={()=>this.left()}/></span>
           <span>Today</span>
-          <img src="../../../../style/pict/r.png" />
+          <span><img src="./pict/r.png" onClick={()=>this.right()}/></span>
         </div>
       </div>
     );

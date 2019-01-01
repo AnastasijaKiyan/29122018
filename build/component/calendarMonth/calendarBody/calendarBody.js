@@ -18,14 +18,11 @@ var calendarBodySection_1 = require("./calenarBodySection/calendarBodySection");
 var CalendarBody = /** @class */ (function (_super) {
     __extends(CalendarBody, _super);
     function CalendarBody(props) {
-        var _this = 
         /*
         if (props.days.length != 42) {
           throw Error("Array's lenght must be only 42");
         } */
-        _super.call(this, props) || this;
-        _this.state = { daySelectedId: 18 };
-        return _this;
+        return _super.call(this, props) || this;
     }
     CalendarBody.prototype.render = function () {
         return (react_1["default"].createElement("div", { className: "calendarBody" }, this.props.days.map(function (day) {
