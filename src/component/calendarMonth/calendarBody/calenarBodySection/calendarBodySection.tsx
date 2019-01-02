@@ -4,6 +4,8 @@ import SectionTask from './sectionEvent/sectionTask';
 
 interface IProps {
   day: IDay;
+  month?: number;
+  year?: number;
 }
 
 

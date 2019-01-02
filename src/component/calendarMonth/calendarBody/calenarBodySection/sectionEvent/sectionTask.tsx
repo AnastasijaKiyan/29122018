@@ -1,13 +1,14 @@
-import React, { Component } from "react";
+import React, { Component, useReducer } from "react";
 import SectionTaskDescription from "./sectionTaskDescriptoin/sectionTasktDescription";
 
 interface IProps {
   id: number;
   task: string;
+
 }
 
 class SectionTask extends Component {
-  private tasts: IProps[] = [];
+  private tasks: IProps[] = [{id:1, task: 'Some Text'}]
 
   constructor(props: any) {
     super(props);

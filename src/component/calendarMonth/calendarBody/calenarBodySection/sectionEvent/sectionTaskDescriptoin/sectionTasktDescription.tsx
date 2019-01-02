@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 
-interface IProps {}
+interface IProps {
+  id: number;
+  task: string;
+ 
+
+}
 
 class SectionTaskDescription extends Component {
   constructor(props: IProps) {
