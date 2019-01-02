@@ -26,6 +26,12 @@ var HeaderTitle = /** @class */ (function (_super) {
     HeaderTitle.prototype.press = function (id) {
         this.setState({ typeDateSelectedId: id });
     };
+    HeaderTitle.prototype.left = function () {
+        console.log("left");
+    };
+    HeaderTitle.prototype.right = function () {
+        console.log("right");
+    };
     HeaderTitle.prototype.render = function () {
         var _this = this;
         return (react_1["default"].createElement("div", { className: "headerTitle" },
@@ -36,9 +42,11 @@ var HeaderTitle = /** @class */ (function (_super) {
                 item.name,
                 " "); })),
             react_1["default"].createElement("div", { className: "headerToggleData" },
-                react_1["default"].createElement("img", { src: "../../../../style/pict/r.png" }),
+                react_1["default"].createElement("span", null,
+                    react_1["default"].createElement("img", { src: "./pict/l.png", onClick: function () { return _this.left(); } })),
                 react_1["default"].createElement("span", null, "Today"),
-                react_1["default"].createElement("img", { src: "../../../../style/pict/r.png" }))));
+                react_1["default"].createElement("span", null,
+                    react_1["default"].createElement("img", { src: "./pict/r.png", onClick: function () { return _this.right(); } })))));
     };
     return HeaderTitle;
 }(react_1.Component));

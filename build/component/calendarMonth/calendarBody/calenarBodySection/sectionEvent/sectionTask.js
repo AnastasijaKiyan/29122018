@@ -14,11 +14,6 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var react_1 = require("react");
-var sectionTasktDescription_1 = require("./sectionTaskDescriptoin/sectionTasktDescription");
-// interface IProps {
-//   id: number;
-//   task: string;
-// }
 var SectionTask = /** @class */ (function (_super) {
     __extends(SectionTask, _super);
     function SectionTask(props) {
@@ -27,13 +22,7 @@ var SectionTask = /** @class */ (function (_super) {
         return _this;
     }
     SectionTask.prototype.render = function () {
-        return (react_1["default"].createElement("div", { className: "allSectionTasks" },
-            react_1["default"].createElement("div", { className: "sectionTask" }, "Some text"),
-            react_1["default"].createElement("div", { className: "sectionTask" }, "Some text"),
-            react_1["default"].createElement("div", { className: "sectionTask" }, "Some text"),
-            react_1["default"].createElement("div", { className: "sectionTask" }, "Some text"),
-            react_1["default"].createElement("div", { className: "hoveredTask" }, "2 more..."),
-            react_1["default"].createElement(sectionTasktDescription_1["default"], null)));
+        return (react_1["default"].createElement("div", null));
     };
     return SectionTask;
 }(react_1.Component));

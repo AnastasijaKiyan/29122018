@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { IDay } from "../../../type/IDay";
 import CalendarBodySection from "./calenarBodySection/calendarBodySection";
 import dataDay from "../../../data/dataday";
-import { element } from "prop-types";
+
 
 interface IProps {
   days: IDay[];

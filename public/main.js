@@ -156,10 +156,6 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _sectionTasktDescription = _interopRequireDefault(require("./sectionTaskDescriptoin/sectionTasktDescription"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -182,10 +178,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-// interface IProps {
-//   id: number;
-//   task: string;
-// }
 var SectionTask =
 /*#__PURE__*/
 function (_Component) {
@@ -206,19 +198,7 @@ function (_Component) {
   _createClass(SectionTask, [{
     key: "render",
     value: function render() {
-      return _react.default.createElement("div", {
-        className: "allSectionTasks"
-      }, _react.default.createElement("div", {
-        className: "sectionTask"
-      }, "Some text"), _react.default.createElement("div", {
-        className: "sectionTask"
-      }, "Some text"), _react.default.createElement("div", {
-        className: "sectionTask"
-      }, "Some text"), _react.default.createElement("div", {
-        className: "sectionTask"
-      }, "Some text"), _react.default.createElement("div", {
-        className: "hoveredTask"
-      }, "2 more..."), _react.default.createElement(_sectionTasktDescription.default, null));
+      return _react.default.createElement("div", null);
     }
   }]);
 
@@ -594,6 +574,16 @@ function (_Component) {
       });
     }
   }, {
+    key: "left",
+    value: function left() {
+      console.log("left");
+    }
+  }, {
+    key: "right",
+    value: function right() {
+      console.log("right");
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -619,11 +609,17 @@ function (_Component) {
         }, item.name, " ");
       })), _react.default.createElement("div", {
         className: "headerToggleData"
-      }, _react.default.createElement("img", {
-        src: "../../../../style/pict/r.png"
-      }), _react.default.createElement("span", null, "Today"), _react.default.createElement("img", {
-        src: "../../../../style/pict/r.png"
-      })));
+      }, _react.default.createElement("span", null, _react.default.createElement("img", {
+        src: "./pict/l.png",
+        onClick: function onClick() {
+          return _this2.left();
+        }
+      })), _react.default.createElement("span", null, "Today"), _react.default.createElement("span", null, _react.default.createElement("img", {
+        src: "./pict/r.png",
+        onClick: function onClick() {
+          return _this2.right();
+        }
+      }))));
     }
   }]);
 

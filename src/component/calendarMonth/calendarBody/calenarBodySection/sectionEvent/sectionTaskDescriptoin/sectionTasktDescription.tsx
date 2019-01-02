@@ -10,9 +10,11 @@ class SectionTaskDescription extends Component {
     return (
       <div className="taskDescription">
         <div className="taskHeader">
-          <div className="taskCompanyName">Coca-Cola</div>
-          <div className="taskBtn"></div>
-          <div className="taskUserName">User 1</div>
+          <div className="taskHeaderDiv">
+            <div className="taskCompanyName">Coca-Cola</div>
+            <div className="taskUserName">User 1</div>
+          </div>
+          <div className="taskBtn" />
         </div>
         <div className="taskDate">
           <div className="startDate">Nov 28, 2018 12 AM to</div>
