@@ -8,7 +8,7 @@ class CalendarDay extends Component {
   }
   render() {
     return (
-      <div>
+      <div className='calendarDay'>
         {/* <CalendarHeader /> */}
         <CalendarDayBody />
       </div>

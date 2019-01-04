@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import CalendarDayTask from './calendarDayTask/calendarDayTask';
+import CalendarDayTimer from './calendarDayTimer/calendarDayTimer';
 import { ITask } from './calendarDayTask/calendarDayTask';
+
 
 
 class CalendarDayBody extends Component {
@@ -20,7 +22,7 @@ class CalendarDayBody extends Component {
   render() {
     return (
       <div className="calendarDayBody">
-        <div className="aside" />
+        <CalendarDayTimer/>
         <div className="body">
           <div className="hours">
             {this.hours.map(e => {
