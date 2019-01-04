@@ -1,18 +1,18 @@
 import React, { Component } from "react";
-import { IState } from './type/IState';
-import * as Reducer from './reducer/reducer';
+import { IState } from "./type/IState";
+import * as Reducer from "./reducer/reducer";
 
 import "./index.sass";
-import CalendarMonth from "./component/calendarMonth/calendarMonth";
-
+//import CalendarMonth from "./component/calendarMonth/calendarMonth";
+import CalendarDay from "./component/calendarDay/calendarDay";
 
 export default class App extends Component<{}, IState> {
   state: IState = Reducer.store.getState();
-  unsubscribe = () => { };
+  unsubscribe = () => {};
 
   componentDidMount(): void {
     this.unsubscribe = Reducer.store.subscribe(() => {
-      this.setState(Reducer.store.getState())
+      this.setState(Reducer.store.getState());
     });
   }
 
@@ -21,6 +21,11 @@ export default class App extends Component<{}, IState> {
   }
 
   render(): JSX.Element {
-    return <CalendarMonth />
+    return (
+      <div>
+        {/* <CalendarMonth /> */}
+        <CalendarDay/>
+      </div>
+    );
   }
 }

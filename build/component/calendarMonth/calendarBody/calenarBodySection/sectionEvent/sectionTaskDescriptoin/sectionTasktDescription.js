@@ -22,9 +22,10 @@ var SectionTaskDescription = /** @class */ (function (_super) {
     SectionTaskDescription.prototype.render = function () {
         return (react_1["default"].createElement("div", { className: "taskDescription" },
             react_1["default"].createElement("div", { className: "taskHeader" },
-                react_1["default"].createElement("div", { className: "taskCompanyName" }, "Coca-Cola"),
-                react_1["default"].createElement("div", { className: "taskBtn" }),
-                react_1["default"].createElement("div", { className: "taskUserName" }, "User 1")),
+                react_1["default"].createElement("div", { className: "taskHeaderDiv" },
+                    react_1["default"].createElement("div", { className: "taskCompanyName" }, "Coca-Cola"),
+                    react_1["default"].createElement("div", { className: "taskUserName" }, "User 1")),
+                react_1["default"].createElement("div", { className: "taskBtn" })),
             react_1["default"].createElement("div", { className: "taskDate" },
                 react_1["default"].createElement("div", { className: "startDate" }, "Nov 28, 2018 12 AM to"),
                 react_1["default"].createElement("div", { className: "finsshDate" }, "Nov 30, 2018 12:59 PM")),

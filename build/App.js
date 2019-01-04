@@ -16,7 +16,8 @@ exports.__esModule = true;
 var react_1 = require("react");
 var Reducer = require("./reducer/reducer");
 require("./index.sass");
-var calendarMonth_1 = require("./component/calendarMonth/calendarMonth");
+//import CalendarMonth from "./component/calendarMonth/calendarMonth";
+var calendarDay_1 = require("./component/calendarDay/calendarDay");
 var App = /** @class */ (function (_super) {
     __extends(App, _super);
     function App() {
@@ -35,7 +36,8 @@ var App = /** @class */ (function (_super) {
         this.unsubscribe();
     };
     App.prototype.render = function () {
-        return react_1["default"].createElement(calendarMonth_1["default"], null);
+        return (react_1["default"].createElement("div", null,
+            react_1["default"].createElement(calendarDay_1["default"], null)));
     };
     return App;
 }(react_1.Component));

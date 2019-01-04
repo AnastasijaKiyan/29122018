@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CalendarDayBody from "../calendarDay/calendarDayBody/calendarDayBody";
-import CalendarHeader from "../calendarMonth/calendarHeader/calendarHeader";
+import CalendarHeader from "../../component/calendarMonth/calendarHeader/calendarHeader";
 
 class CalendarDay extends Component {
   constructor(props: any) {
@@ -9,7 +9,7 @@ class CalendarDay extends Component {
   render() {
     return (
       <div>
-        <CalendarHeader />
+        {/* <CalendarHeader /> */}
         <CalendarDayBody />
       </div>
     );

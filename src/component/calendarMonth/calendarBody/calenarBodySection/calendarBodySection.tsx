@@ -18,7 +18,7 @@ class CalendarBodySection extends Component <IProps> {
   render(): JSX.Element {
     return (
       <div className="calendarBodySection">
-              <div className='calendarDay'>{this.props.day.day}</div>
+              <div className='day'>{this.props.day.day}</div>
               <SectionTask />
       </div>
     );
