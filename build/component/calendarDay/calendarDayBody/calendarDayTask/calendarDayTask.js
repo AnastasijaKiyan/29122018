@@ -14,16 +14,16 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var react_1 = require("react");
-var calendarDayBody_1 = require("../calendarDay/calendarDayBody/calendarDayBody");
-var CalendarDay = /** @class */ (function (_super) {
-    __extends(CalendarDay, _super);
-    function CalendarDay(props) {
+var CalendarDayTask = /** @class */ (function (_super) {
+    __extends(CalendarDayTask, _super);
+    function CalendarDayTask(props) {
         return _super.call(this, props) || this;
     }
-    CalendarDay.prototype.render = function () {
-        return (react_1["default"].createElement("div", { className: 'calendarDay' },
-            react_1["default"].createElement(calendarDayBody_1["default"], null)));
+    CalendarDayTask.prototype.render = function () {
+        return (react_1["default"].createElement("div", { className: "calendarDayTask-full" },
+            react_1["default"].createElement("div", null, this.props.hour),
+            react_1["default"].createElement("div", null, this.props.taskType)));
     };
-    return CalendarDay;
+    return CalendarDayTask;
 }(react_1.Component));
-exports["default"] = CalendarDay;
+exports["default"] = CalendarDayTask;

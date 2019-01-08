@@ -12,7 +12,7 @@ super(props)
 }
 render(){
   return(
-    <div className="calendarDayTask-empty">
+    <div className="calendarDayTask-full">
       <div>{this.props.hour}</div>
       <div>{this.props.taskType}</div>
     </div>
