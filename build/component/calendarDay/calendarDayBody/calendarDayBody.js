@@ -21,7 +21,7 @@ var CalendarDayBody = /** @class */ (function (_super) {
     function CalendarDayBody(props) {
         var _this = _super.call(this, props) || this;
         _this.hours = [
-            1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24
         ];
         _this.tasks = [
             { id: 1, hour: '00:00 AM', taskType: 'Adver 1' },
@@ -60,7 +60,7 @@ var CalendarDayBody = /** @class */ (function (_super) {
                     return react_1["default"].createElement("div", { className: "hour" }, e);
                 })),
                 react_1["default"].createElement("div", { className: "body-empty" }),
-                react_1["default"].createElement("div", { className: 'calendarTasks' }, this.tasks.map(function (el) {
+                react_1["default"].createElement("div", { className: 'calendarDayTasks' }, this.tasks.map(function (el) {
                     return react_1["default"].createElement(calendarDayTask_1["default"], { key: el.id, id: el.id, hour: el.hour, taskType: el.taskType });
                 })))));
     };

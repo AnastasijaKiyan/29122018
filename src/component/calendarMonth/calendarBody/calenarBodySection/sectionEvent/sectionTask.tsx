@@ -1,31 +1,43 @@
 import React, { Component, useReducer } from "react";
 import SectionTaskDescription from "./sectionTaskDescriptoin/sectionTasktDescription";
 
-interface IProps {
+interface Section {
   id: number;
   task: string;
-
 }
+type Props = {};
+type State = { selectedId: number };
 
-class SectionTask extends Component {
-  private tasks: IProps[] = [{id:1, task: 'Some Text'}]
+class SectionTask extends Component<Props, State> {
+  private section: Section[] = [
+    { id: 1, task: "Some Text" },
+    { id: 2, task: "Some Text" },
+    { id: 3, task: "Some Text" },
+    { id: 4, task: "Some Text" },
+    { id: 5, task: "Some Text" }
+  ];
 
-  constructor(props: any) {
+  constructor(props: Props) {
     super(props);
+    this.state = { selectedId: 15 };
   }
 
-  render(): JSX.Element {
+  press(id: number, e: React.MouseEvent<HTMLDivElement>): void {
+    this.setState({ selectedId: id });
+  }
+
+  render() {
     return (
-      <div className='sectionTask'>
+      <div className="sectionTask">
         <SectionTaskDescription />
         <div className="allSectionTasks">
-          <div className="sectionTaskItem">Some text</div>
-          <div className="sectionTaskItem">Some text</div>
-          <div className="sectionTaskItem">Some text</div>
-          <div className="sectionTaskItem">Some text</div>
-          <div className="sectionTaskItem">Some text</div>
-        </div>
+          {
+            this.section.map((item: Section)=>
+            <div key={item.id} className="sectionTaskItem" onClick={e => this.press(item.id, e)}>Some Text</div>
+            )}
+
         <div className="hoveredTask">2 more...</div>
+      </div>
       </div>
     );
   }

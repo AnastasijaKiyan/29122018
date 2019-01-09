@@ -194,7 +194,7 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(CalendarDayBody).call(this, props));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "hours", [1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]);
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "hours", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]);
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "tasks", [{
       id: 1,
@@ -316,7 +316,7 @@ function (_Component) {
       })), _react.default.createElement("div", {
         className: "body-empty"
       }), _react.default.createElement("div", {
-        className: "calendarTasks"
+        className: "calendarDayTasks"
       }, this.tasks.map(function (el) {
         return _react.default.createElement(_calendarDayTask.default, {
           key: el.id,
@@ -1276,6 +1276,111 @@ var dataDay = [{
   "day": 1
 }];
 var _default = dataDay;
+exports.default = _default;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var timers = [{
+  id: 1,
+  hour: '00:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 2,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 3,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 4,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 5,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 6,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 7,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 8,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 9,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 10,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 11,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 12,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 13,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 14,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 15,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 16,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 17,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 18,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 19,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 20,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 21,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 22,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 23,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}, {
+  id: 24,
+  hour: '01:00 AM',
+  taskType: 'Adver 2'
+}];
+var _default = timers;
 exports.default = _default;
 "use strict";
 
