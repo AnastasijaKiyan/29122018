@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import moment from "moment";
 import { IDay } from '../../../../type/IDay';
 import SectionTask from './sectionEvent/sectionTask';
 
 interface IProps {
-  day: IDay;
+  day: number;
   month?: number;
   year?: number;
 }
@@ -14,7 +15,7 @@ type State = { selectedId: number };
 class CalendarBodySection extends Component <IProps, State> {
   constructor(props: IProps) {
     super(props);
-    this.state = { selectedId: 18 };
+    this.state = { selectedId: parseInt(moment().format("DD")) };
   }
 
   press(id: number, e: React.MouseEvent<HTMLDivElement>): void {
@@ -26,8 +27,8 @@ class CalendarBodySection extends Component <IProps, State> {
   render(): JSX.Element {
     return (
       <div className="calendarBodySection">
-              <div className={this.state.selectedId == this.props.day.id ? "day calendarDayActive" : "day"}
-              onClick={e => this.press(this.props.day.id, e)}>{this.props.day.day}</div>
+              <div className={this.state.selectedId == this.props.day ? "day calendarDayActive" : "day"}
+              onClick={e => this.press(this.props.day, e)}>{this.props.day}</div>
               <SectionTask />
       </div>
     );

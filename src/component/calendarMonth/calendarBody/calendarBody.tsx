@@ -1,35 +1,18 @@
 import React, { Component } from "react";
 import { IDay } from "../../../type/IDay";
 import CalendarBodySection from "./calenarBodySection/calendarBodySection";
-import dataDay from "../../../data/dataday";
-
 
 interface IProps {
-  days: IDay[];
+	days: number[][];
 }
 
-class CalendarBody extends React.Component<IProps> {
-  constructor(props: IProps) {
-    /*
-    if (props.days.length != 42) {
-      throw Error("Array's lenght must be only 42");
-    } */
-    super(props);
-  }
+class CalendarBody extends Component<IProps> {
+	render() {
+		return <div className="calendarBody">{this.props.days.map(this._getWeek)}</div>;
+	}
 
-  render() {
-    return (
-      <div className="calendarBody">
-      {
-        this.props.days.map((day): JSX.Element => {
-          return (
-              <CalendarBodySection key={day.id} day={day} />
-          )
-        })
-      }
-    </div>
-    );
-  }
+	_getWeek = (week: number[]): JSX.Element[] => week.map(this._getSection);
+	_getSection = (day: number): JSX.Element => <CalendarBodySection key={day} day={day} />;
 }
 
 export default CalendarBody;

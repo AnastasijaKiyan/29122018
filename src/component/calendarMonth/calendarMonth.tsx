@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import CalendarBody from './calendarBody/calendarBody';
-import { IDay } from '../../type/IDay'
-import dataDay from '../../data/dataday';
 import CalendarHeader from './calendarHeader/calendarHeader';
+import { month } from "./../../data/storage";
 
 class CalendarMonth extends Component {
-  constructor(props: any) {
-    super(props);
-  }
-
   render() {
-    let d: IDay[] = dataDay;
+    let d: number[][] = month(6) as number[][];
     return (
       <div className="calendarMonth">
         <CalendarHeader/>

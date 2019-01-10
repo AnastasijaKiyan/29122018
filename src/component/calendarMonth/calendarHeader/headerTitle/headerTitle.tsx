@@ -1,60 +1,56 @@
 import React, { Component } from "react";
 
-interface TypeDate {
-  id: number;
-  name: string;
-}
+const _DIMENSION = ["Day", "Week", "Month"];
 
 type Props = {};
 type State = { typeDateSelectedId: number };
 
 class HeaderTitle extends Component<Props, State> {
-  private typeDate: TypeDate[] = [];
+	public state = { typeDateSelectedId: 2 };
 
-  constructor(props: any) {
-    super(props);
+	press(id: number): void {
+		this.setState({ typeDateSelectedId: id });
+	}
 
-    this.state = { typeDateSelectedId: 3 };
-    this.typeDate.push(
-      { id: 1, name: "Day" },
-      { id: 2, name: "Week" },
-      { id: 3, name: "Month" }
-    );
-  }
+	left(): void {
+		console.log("left");
+	}
 
-  press(id: number): void {
-    this.setState({ typeDateSelectedId: id });
-  }
+	right(): void {
+		console.log("right");
+	}
 
-  left(): void {
-    console.log("left");
-  }
+	render() {
+		return (
+			<div className="headerTitle">
+				<div className="headerData">
+					<div className="headerDataMonth">October</div>
+					<div className="headerDataYear">2018</div>
+				</div>
+				<ul className="headerTypeData">{_DIMENSION.map(this._getDimension.bind(this))}</ul>
+				<div className="headerToggleData">
+					<span>
+						<img src="./pict/l.png" onClick={() => this.left()} />
+					</span>
+					<span>Today</span>
+					<span>
+						<img src="./pict/r.png" onClick={() => this.right()} />
+					</span>
+				</div>
+			</div>
+		);
+	}
 
-  right(): void {
-    console.log("right");
-  }
-
-  render() {
-    return (
-      <div className="headerTitle">
-        <div className="headerData">
-          <div className="headerDataMonth">October</div>
-          <div className="headerDataYear">2018</div>
-        </div>
-        <ul className="headerTypeData">
-        { 
-          this.typeDate.map((item: TypeDate) => <li key={item.id} className={this.state.typeDateSelectedId == item.id ? "clicked" : ""}
-          id={String(item.id)} onClick={e => this.press(item.id)}>{item.name} </li>)
-        }
-        </ul>
-        <div className="headerToggleData">
-          <span><img src="./pict/l.png" onClick={()=>this.left()}/></span>
-          <span>Today</span>
-          <span><img src="./pict/r.png" onClick={()=>this.right()}/></span>
-        </div>
-      </div>
-    );
-  }
+	_getDimension(item: string, index: number): JSX.Element {
+		const isCurrent = this.state.typeDateSelectedId === index;
+		const className = isCurrent ? "clicked" : "";
+		const onClick = isCurrent ? undefined : this.press.bind(this, index);
+		return (
+			<li key={item} className={className} onClick={onClick}>
+				{item}
+			</li>
+		);
+	}
 }
 
 export default HeaderTitle;
