@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 
-class HeaderWeekDays extends Component {
-  constructor(props: any) {
-    super(props);
-  }
-
+export default class HeaderWeekDays extends Component {
   render() {
     return (
         <ul className="headerWeekDays">
@@ -19,5 +15,3 @@ class HeaderWeekDays extends Component {
     );
   }
 }
-
-export default HeaderWeekDays;
