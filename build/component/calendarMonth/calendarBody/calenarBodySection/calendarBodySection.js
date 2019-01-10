@@ -18,11 +18,18 @@ var sectionTask_1 = require("./sectionEvent/sectionTask");
 var CalendarBodySection = /** @class */ (function (_super) {
     __extends(CalendarBodySection, _super);
     function CalendarBodySection(props) {
-        return _super.call(this, props) || this;
+        var _this = _super.call(this, props) || this;
+        _this.state = { selectedId: 18 };
+        return _this;
     }
+    CalendarBodySection.prototype.press = function (id, e) {
+        this.setState({ selectedId: id });
+        console.log('222');
+    };
     CalendarBodySection.prototype.render = function () {
+        var _this = this;
         return (react_1["default"].createElement("div", { className: "calendarBodySection" },
-            react_1["default"].createElement("div", { className: 'calendarDay' }, this.props.day.day),
+            react_1["default"].createElement("div", { className: this.state.selectedId == this.props.day.id ? "day calendarDayActive" : "day", onClick: function (e) { return _this.press(_this.props.day.id, e); } }, this.props.day.day),
             react_1["default"].createElement(sectionTask_1["default"], null)));
     };
     return CalendarBodySection;

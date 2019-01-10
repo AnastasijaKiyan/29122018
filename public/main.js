@@ -9,9 +9,11 @@ var _react = _interopRequireWildcard(require("react"));
 
 var Reducer = _interopRequireWildcard(require("./reducer/reducer"));
 
-require("./index.sass");
+var _calendarMonth = _interopRequireDefault(require("./component/calendarMonth/calendarMonth"));
 
 var _calendarDay = _interopRequireDefault(require("./component/calendarDay/calendarDay"));
+
+require("./index.sass");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -79,7 +81,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return _react.default.createElement("div", null, _react.default.createElement(_calendarDay.default, null));
+      return _react.default.createElement("div", null, _react.default.createElement(_calendarMonth.default, null), _react.default.createElement("br", null), _react.default.createElement(_calendarDay.default, null));
     }
   }]);
 
@@ -97,6 +99,12 @@ exports.default = void 0;
 var _react = _interopRequireWildcard(require("react"));
 
 var _calendarDayBody = _interopRequireDefault(require("../calendarDay/calendarDayBody/calendarDayBody"));
+
+var _headerButtons = _interopRequireDefault(require("../calendarMonth/calendarHeader/headerButtons/headerButtons"));
+
+var _headerTitle = _interopRequireDefault(require("../calendarMonth/calendarHeader/headerTitle/headerTitle"));
+
+require("../../index.sass");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -136,7 +144,9 @@ function (_Component) {
     value: function render() {
       return _react.default.createElement("div", {
         className: "calendarDay"
-      }, _react.default.createElement(_calendarDayBody.default, null));
+      }, _react.default.createElement("div", {
+        className: "calendarHeader"
+      }, _react.default.createElement(_headerButtons.default, null), _react.default.createElement(_headerTitle.default, null)), _react.default.createElement(_calendarDayBody.default, null));
     }
   }]);
 
@@ -496,18 +506,37 @@ function (_Component) {
   _inherits(CalendarBodySection, _Component);
 
   function CalendarBodySection(props) {
+    var _this;
+
     _classCallCheck(this, CalendarBodySection);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(CalendarBodySection).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CalendarBodySection).call(this, props));
+    _this.state = {
+      selectedId: 18
+    };
+    return _this;
   }
 
   _createClass(CalendarBodySection, [{
+    key: "press",
+    value: function press(id, e) {
+      this.setState({
+        selectedId: id
+      });
+      console.log('222');
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return _react.default.createElement("div", {
         className: "calendarBodySection"
       }, _react.default.createElement("div", {
-        className: "day"
+        className: this.state.selectedId == this.props.day.id ? "day calendarDayActive" : "day",
+        onClick: function onClick(e) {
+          return _this2.press(_this2.props.day.id, e);
+        }
       }, this.props.day.day), _react.default.createElement(_sectionTask.default, null));
     }
   }]);
@@ -564,34 +593,56 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SectionTask).call(this, props));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "tasks", [{
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "section", [{
       id: 1,
-      task: 'Some Text'
+      task: "Some Text"
+    }, {
+      id: 2,
+      task: "Some Text"
+    }, {
+      id: 3,
+      task: "Some Text"
+    }, {
+      id: 4,
+      task: "Some Text"
+    }, {
+      id: 5,
+      task: "Some Text"
     }]);
 
+    _this.state = {
+      selectedId: 15
+    };
     return _this;
   }
 
   _createClass(SectionTask, [{
+    key: "press",
+    value: function press(id, e) {
+      this.setState({
+        selectedId: id
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return _react.default.createElement("div", {
         className: "sectionTask"
       }, _react.default.createElement(_sectionTasktDescription.default, null), _react.default.createElement("div", {
         className: "allSectionTasks"
-      }, _react.default.createElement("div", {
-        className: "sectionTaskItem"
-      }, "Some text"), _react.default.createElement("div", {
-        className: "sectionTaskItem"
-      }, "Some text"), _react.default.createElement("div", {
-        className: "sectionTaskItem"
-      }, "Some text"), _react.default.createElement("div", {
-        className: "sectionTaskItem"
-      }, "Some text"), _react.default.createElement("div", {
-        className: "sectionTaskItem"
-      }, "Some text")), _react.default.createElement("div", {
+      }, this.section.map(function (item) {
+        return _react.default.createElement("div", {
+          key: item.id,
+          className: "sectionTaskItem",
+          onClick: function onClick(e) {
+            return _this2.press(item.id, e);
+          }
+        }, "Some Text");
+      }), _react.default.createElement("div", {
         className: "hoveredTask"
-      }, "2 more..."));
+      }, "2 more...")));
     }
   }]);
 
