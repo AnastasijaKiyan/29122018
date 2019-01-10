@@ -15,15 +15,15 @@ var __extends = (this && this.__extends) || (function () {
 exports.__esModule = true;
 var react_1 = require("react");
 var calendarBody_1 = require("./calendarBody/calendarBody");
-var dataday_1 = require("../../data/dataday");
 var calendarHeader_1 = require("./calendarHeader/calendarHeader");
+var storage_1 = require("./../../data/storage");
 var CalendarMonth = /** @class */ (function (_super) {
     __extends(CalendarMonth, _super);
-    function CalendarMonth(props) {
-        return _super.call(this, props) || this;
+    function CalendarMonth() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     CalendarMonth.prototype.render = function () {
-        var d = dataday_1["default"];
+        var d = storage_1.month(6);
         return (react_1["default"].createElement("div", { className: "calendarMonth" },
             react_1["default"].createElement(calendarHeader_1["default"], null),
             react_1["default"].createElement(calendarBody_1["default"], { days: d })));

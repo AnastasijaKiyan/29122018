@@ -16,8 +16,8 @@ exports.__esModule = true;
 var react_1 = require("react");
 var HeaderWeekDays = /** @class */ (function (_super) {
     __extends(HeaderWeekDays, _super);
-    function HeaderWeekDays(props) {
-        return _super.call(this, props) || this;
+    function HeaderWeekDays() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     HeaderWeekDays.prototype.render = function () {
         return (react_1["default"].createElement("ul", { className: "headerWeekDays" },

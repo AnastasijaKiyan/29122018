@@ -14,13 +14,12 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var react_1 = require("react");
+var _DIMENSION = ["Day", "Week", "Month"];
 var HeaderTitle = /** @class */ (function (_super) {
     __extends(HeaderTitle, _super);
-    function HeaderTitle(props) {
-        var _this = _super.call(this, props) || this;
-        _this.typeDate = [];
-        _this.state = { typeDateSelectedId: 3 };
-        _this.typeDate.push({ id: 1, name: "Day" }, { id: 2, name: "Week" }, { id: 3, name: "Month" });
+    function HeaderTitle() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.state = { typeDateSelectedId: 2 };
         return _this;
     }
     HeaderTitle.prototype.press = function (id) {
@@ -38,15 +37,19 @@ var HeaderTitle = /** @class */ (function (_super) {
             react_1["default"].createElement("div", { className: "headerData" },
                 react_1["default"].createElement("div", { className: "headerDataMonth" }, "October"),
                 react_1["default"].createElement("div", { className: "headerDataYear" }, "2018")),
-            react_1["default"].createElement("ul", { className: "headerTypeData" }, this.typeDate.map(function (item) { return react_1["default"].createElement("li", { key: item.id, className: _this.state.typeDateSelectedId == item.id ? "clicked" : "", id: String(item.id), onClick: function (e) { return _this.press(item.id); } },
-                item.name,
-                " "); })),
+            react_1["default"].createElement("ul", { className: "headerTypeData" }, _DIMENSION.map(this._getDimension.bind(this))),
             react_1["default"].createElement("div", { className: "headerToggleData" },
                 react_1["default"].createElement("span", null,
                     react_1["default"].createElement("img", { src: "./pict/l.png", onClick: function () { return _this.left(); } })),
                 react_1["default"].createElement("span", null, "Today"),
                 react_1["default"].createElement("span", null,
                     react_1["default"].createElement("img", { src: "./pict/r.png", onClick: function () { return _this.right(); } })))));
+    };
+    HeaderTitle.prototype._getDimension = function (item, index) {
+        var isCurrent = this.state.typeDateSelectedId === index;
+        var className = isCurrent ? "clicked" : "";
+        var onClick = isCurrent ? undefined : this.press.bind(this, index);
+        return (react_1["default"].createElement("li", { key: item, className: className, onClick: onClick }, item));
     };
     return HeaderTitle;
 }(react_1.Component));

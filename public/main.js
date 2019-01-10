@@ -440,7 +440,7 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(CalendarDayTimer).call(this, props));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "times", ['00:00:40', '00:00:50', '00:01:00', '00:01:10', '00:01:20', '00:01:30', '00:01:40', '00:01:50', '00:02:00', '00:02:10', '00:02:20', '00:02:30', '00:02:40', '00:02:50', '00:03:00']);
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "times", ['00:00:00', '00:00:10', '00:00:20', '00:00:30', '00:00:40', '00:00:50', '00:01:00', '00:01:10', '00:01:20', '00:01:30', '00:01:40', '00:01:50', '00:02:00', '00:02:10', '00:02:20', '00:02:30', '00:02:40', '00:02:50', '00:03:00']);
 
     return _this;
   }
@@ -475,6 +475,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
+
+var _moment = _interopRequireDefault(require("moment"));
 
 var _sectionTask = _interopRequireDefault(require("./sectionEvent/sectionTask"));
 
@@ -512,7 +514,7 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(CalendarBodySection).call(this, props));
     _this.state = {
-      selectedId: 18
+      selectedId: parseInt((0, _moment.default)().format("DD"))
     };
     return _this;
   }
@@ -533,11 +535,11 @@ function (_Component) {
       return _react.default.createElement("div", {
         className: "calendarBodySection"
       }, _react.default.createElement("div", {
-        className: this.state.selectedId == this.props.day.id ? "day calendarDayActive" : "day",
+        className: this.state.selectedId == this.props.day ? "day calendarDayActive" : "day",
         onClick: function onClick(e) {
-          return _this2.press(_this2.props.day.id, e);
+          return _this2.press(_this2.props.day, e);
         }
-      }, this.props.day.day), _react.default.createElement(_sectionTask.default, null));
+      }, this.props.day), _react.default.createElement(_sectionTask.default, null));
     }
   }]);
 
@@ -732,11 +734,13 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
 var _calendarBodySection = _interopRequireDefault(require("./calenarBodySection/calendarBodySection"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -748,27 +752,46 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var CalendarBody =
 /*#__PURE__*/
-function (_React$Component) {
-  _inherits(CalendarBody, _React$Component);
+function (_Component) {
+  _inherits(CalendarBody, _Component);
 
-  function CalendarBody(props) {
+  function CalendarBody() {
+    var _getPrototypeOf2;
+
+    var _this;
+
     _classCallCheck(this, CalendarBody);
 
-    /*
-    if (props.days.length != 42) {
-      throw Error("Array's lenght must be only 42");
-    } */
-    return _possibleConstructorReturn(this, _getPrototypeOf(CalendarBody).call(this, props));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(CalendarBody)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_getWeek", function (week) {
+      return week.map(_this._getSection);
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_getSection", function (day) {
+      return _react.default.createElement(_calendarBodySection.default, {
+        key: day,
+        day: day
+      });
+    });
+
+    return _this;
   }
 
   _createClass(CalendarBody, [{
@@ -776,17 +799,12 @@ function (_React$Component) {
     value: function render() {
       return _react.default.createElement("div", {
         className: "calendarBody"
-      }, this.props.days.map(function (day) {
-        return _react.default.createElement(_calendarBodySection.default, {
-          key: day.id,
-          day: day
-        });
-      }));
+      }, this.props.days.map(this._getWeek));
     }
   }]);
 
   return CalendarBody;
-}(_react.default.Component);
+}(_react.Component);
 
 var _default = CalendarBody;
 exports.default = _default;
@@ -980,33 +998,28 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+var _DIMENSION = ["Day", "Week", "Month"];
+
 var HeaderTitle =
 /*#__PURE__*/
 function (_Component) {
   _inherits(HeaderTitle, _Component);
 
-  function HeaderTitle(props) {
+  function HeaderTitle() {
+    var _getPrototypeOf2;
+
     var _this;
 
     _classCallCheck(this, HeaderTitle);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(HeaderTitle).call(this, props));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "typeDate", []);
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(HeaderTitle)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _this.state = {
-      typeDateSelectedId: 3
-    };
-
-    _this.typeDate.push({
-      id: 1,
-      name: "Day"
-    }, {
-      id: 2,
-      name: "Week"
-    }, {
-      id: 3,
-      name: "Month"
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
+      typeDateSelectedId: 2
     });
 
     return _this;
@@ -1044,16 +1057,7 @@ function (_Component) {
         className: "headerDataYear"
       }, "2018")), _react.default.createElement("ul", {
         className: "headerTypeData"
-      }, this.typeDate.map(function (item) {
-        return _react.default.createElement("li", {
-          key: item.id,
-          className: _this2.state.typeDateSelectedId == item.id ? "clicked" : "",
-          id: String(item.id),
-          onClick: function onClick(e) {
-            return _this2.press(item.id);
-          }
-        }, item.name, " ");
-      })), _react.default.createElement("div", {
+      }, _DIMENSION.map(this._getDimension.bind(this))), _react.default.createElement("div", {
         className: "headerToggleData"
       }, _react.default.createElement("span", null, _react.default.createElement("img", {
         src: "./pict/l.png",
@@ -1066,6 +1070,18 @@ function (_Component) {
           return _this2.right();
         }
       }))));
+    }
+  }, {
+    key: "_getDimension",
+    value: function _getDimension(item, index) {
+      var isCurrent = this.state.typeDateSelectedId === index;
+      var className = isCurrent ? "clicked" : "";
+      var onClick = isCurrent ? undefined : this.press.bind(this, index);
+      return _react.default.createElement("li", {
+        key: item,
+        className: className,
+        onClick: onClick
+      }, item);
     }
   }]);
 
@@ -1108,10 +1124,10 @@ var HeaderWeekDays =
 function (_Component) {
   _inherits(HeaderWeekDays, _Component);
 
-  function HeaderWeekDays(props) {
+  function HeaderWeekDays() {
     _classCallCheck(this, HeaderWeekDays);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(HeaderWeekDays).call(this, props));
+    return _possibleConstructorReturn(this, _getPrototypeOf(HeaderWeekDays).apply(this, arguments));
   }
 
   _createClass(HeaderWeekDays, [{
@@ -1126,8 +1142,7 @@ function (_Component) {
   return HeaderWeekDays;
 }(_react.Component);
 
-var _default = HeaderWeekDays;
-exports.default = _default;
+exports.default = HeaderWeekDays;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1139,9 +1154,9 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _calendarBody = _interopRequireDefault(require("./calendarBody/calendarBody"));
 
-var _dataday = _interopRequireDefault(require("../../data/dataday"));
-
 var _calendarHeader = _interopRequireDefault(require("./calendarHeader/calendarHeader"));
+
+var _storage = require("./../../data/storage");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1170,16 +1185,16 @@ var CalendarMonth =
 function (_Component) {
   _inherits(CalendarMonth, _Component);
 
-  function CalendarMonth(props) {
+  function CalendarMonth() {
     _classCallCheck(this, CalendarMonth);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(CalendarMonth).call(this, props));
+    return _possibleConstructorReturn(this, _getPrototypeOf(CalendarMonth).apply(this, arguments));
   }
 
   _createClass(CalendarMonth, [{
     key: "render",
     value: function render() {
-      var d = _dataday.default;
+      var d = (0, _storage.month)(6);
       return _react.default.createElement("div", {
         className: "calendarMonth"
       }, _react.default.createElement(_calendarHeader.default, null), _react.default.createElement(_calendarBody.default, {
@@ -1441,9 +1456,20 @@ var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _App = _interopRequireDefault(require("./App"));
 
+var _moment = _interopRequireDefault(require("moment"));
+
+var _IExternal = require("./type/IExternal");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_reactDom.default.render(_react.default.createElement(_App.default, null), document.getElementById('root'));
+var dateStart = _moment.default.unix(_IExternal._campaign.periodStart);
+
+var dateEnd = _moment.default.unix(_IExternal._campaign.periodEnd);
+
+console.log(dateStart.diff(dateEnd, "hours"));
+console.log((0, _moment.default)().format("DD"));
+
+_reactDom.default.render(_react.default.createElement(_App.default, null), document.getElementById("root"));
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
