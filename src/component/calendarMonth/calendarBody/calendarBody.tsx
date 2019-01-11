@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CalendarBodySection from "./calenarBodySection/calendarBodySection";
+import calendarDayData from '../../../data/calendarDayData';
 
 interface IProps {
 	days: number[][];

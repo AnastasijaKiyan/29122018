@@ -27,7 +27,7 @@ let calendarDayData: ICompany[] = [
     hourStart: 3,
     hourFinish: 11,
     name: "7up",
-    author: "PacMan",
+    author: "PacBack",
     textfirst: "Some Text Some Text",
     textsecond: "Some Text Some Text"
   }

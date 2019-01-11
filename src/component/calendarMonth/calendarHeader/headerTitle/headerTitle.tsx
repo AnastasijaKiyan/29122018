@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 
-const _DIMENSION = ["Day", "Week", "Month"];
+const _DIMENSION = ["Day", "Month"];
 
 type Props = {};
 type State = { typeDateSelectedId: number };
 
 class HeaderTitle extends Component<Props, State> {
-	public state = { typeDateSelectedId: 2 };
+	public state = { typeDateSelectedId: 1 };
 
 	press(id: number): void {
 		this.setState({ typeDateSelectedId: id });

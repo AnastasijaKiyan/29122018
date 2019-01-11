@@ -109,7 +109,7 @@ body
             .headerTypeData
                     display: flex
                     color: #12a19a
-                    width: 244px
+                    width: 133px
                     justify-content: space-between
 
 
@@ -176,7 +176,6 @@ body
         color: $color-white
 
 .taskDescription
-    display: none
     width: 240px
     height: 240px
     border: 1px solid $color-green
@@ -189,30 +188,30 @@ body
     left: 30px
     top: -225px
 
-
-
+.hide
+    display: none
 
 .sectionTask
     position: relative
 
 
     .allSectionTasks
-        //visibility: hidden
         display: flex
         flex-direction: column
-        align-content: space-between
         height: 48px
         width: 100%
-        margin-top: 39px
+        margin-top: 48px
 
 
         .sectionTaskItem
-            height: 8px
+            basic-height: 8px
             width: 100%
             background-color: $color-green
             color: $color-white
             font-size: 7px
             margin-bottom: 2px
+            flex-grow: 1
+
 
 .hoveredTask
     padding-left: 23px
