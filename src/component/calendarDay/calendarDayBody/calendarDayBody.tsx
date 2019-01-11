@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import CalendarDayTask from './calendarDayTask/calendarDayTask';
 import CalendarDayTimer from './calendarDayTimer/calendarDayTimer';
-import { IDayCompany } from '../../../type/IDayCompany'
+import ICompany from '../../../type/ICompany'
 
 interface IProps {
-  data: IDayCompany[]
+  data: ICompany[]
 }
 
 class CalendarDayBody extends Component<IProps> {
@@ -14,7 +14,7 @@ class CalendarDayBody extends Component<IProps> {
     this.state = { taskSelectedId: 2 };
   }
 
-  validator(data: IDayCompany[]): void {
+  validator(data: ICompany[]): void {
     data.forEach(item => {
       if (item.tenSecond < 1)
         throw Error("Property 'tenSecond' can't be less than 1.");

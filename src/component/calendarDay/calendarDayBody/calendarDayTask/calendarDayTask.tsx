@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { IDayCompany } from '../../../../type/IDayCompany';
+import ICompany from '../../../../type/ICompany';
 
 interface IProps {
-  data: IDayCompany
+  data: ICompany;
 }
 
 class CalendarDayTask extends Component<IProps> {

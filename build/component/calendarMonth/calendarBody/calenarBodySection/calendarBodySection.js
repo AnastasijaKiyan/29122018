@@ -25,7 +25,6 @@ var CalendarBodySection = /** @class */ (function (_super) {
     }
     CalendarBodySection.prototype.press = function (id, e) {
         this.setState({ selectedId: id });
-        console.log('222');
     };
     CalendarBodySection.prototype.render = function () {
         var _this = this;

@@ -21,8 +21,8 @@ var CalendarDayTask = /** @class */ (function (_super) {
     }
     CalendarDayTask.prototype.render = function () {
         return (react_1["default"].createElement("div", { className: "calendarDayTask-full" },
-            react_1["default"].createElement("div", null, this.props.hour),
-            react_1["default"].createElement("div", null, this.props.taskType)));
+            react_1["default"].createElement("div", null, this.props.data.name),
+            react_1["default"].createElement("div", null, this.props.data.author)));
     };
     return CalendarDayTask;
 }(react_1.Component));

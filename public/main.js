@@ -100,6 +100,8 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _calendarDayBody = _interopRequireDefault(require("../calendarDay/calendarDayBody/calendarDayBody"));
 
+var _companies = _interopRequireDefault(require("../../data/companies"));
+
 var _headerButtons = _interopRequireDefault(require("../calendarMonth/calendarHeader/headerButtons/headerButtons"));
 
 var _headerTitle = _interopRequireDefault(require("../calendarMonth/calendarHeader/headerTitle/headerTitle"));
@@ -146,7 +148,9 @@ function (_Component) {
         className: "calendarDay"
       }, _react.default.createElement("div", {
         className: "calendarHeader"
-      }, _react.default.createElement(_headerButtons.default, null), _react.default.createElement(_headerTitle.default, null)), _react.default.createElement(_calendarDayBody.default, null));
+      }, _react.default.createElement(_headerButtons.default, null), _react.default.createElement(_headerTitle.default, null)), _react.default.createElement(_calendarDayBody.default, {
+        data: _companies.default
+      }));
     }
   }]);
 
@@ -206,103 +210,7 @@ function (_Component) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "hours", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]);
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "tasks", [{
-      id: 1,
-      hour: '00:00 AM',
-      taskType: 'Adver 1'
-    }, {
-      id: 2,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 3,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 4,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 5,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 6,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 7,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 8,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 9,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 10,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 11,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 12,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 13,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 14,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 15,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 16,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 17,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 18,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 19,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 20,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 21,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 22,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 23,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }, {
-      id: 24,
-      hour: '01:00 AM',
-      taskType: 'Adver 2'
-    }]);
+    _this.validator(props.data);
 
     _this.state = {
       taskSelectedId: 2
@@ -311,6 +219,19 @@ function (_Component) {
   }
 
   _createClass(CalendarDayBody, [{
+    key: "validator",
+    value: function validator(data) {
+      data.forEach(function (item) {
+        if (item.tenSecond < 1) throw Error("Property 'tenSecond' can't be less than 1.");
+        if (item.tenSecond > 18) throw Error("Property 'tenSecond' can't be more than 18.");
+        if (item.hourStart < 1) throw Error("Property 'hourStart' can't be less than 1.");
+        if (item.hourStart > 24) throw Error("Property 'hourStart' can't be more than 24.");
+        if (item.hourFinish < 1) throw Error("Property 'hourFinish' can't be less than 1.");
+        if (item.hourFinish > 24) throw Error("Property 'hourFinish' can't be more than 24.");
+        if (item.hourStart > item.hourFinish) throw Error("Property 'hourStart' can't be more than property 'hourFinish'.");
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       return _react.default.createElement("div", {
@@ -327,12 +248,10 @@ function (_Component) {
         className: "body-empty"
       }), _react.default.createElement("div", {
         className: "calendarDayTasks"
-      }, this.tasks.map(function (el) {
+      }, this.props.data.map(function (el) {
         return _react.default.createElement(_calendarDayTask.default, {
           key: el.id,
-          id: el.id,
-          hour: el.hour,
-          taskType: el.taskType
+          data: el
         });
       }))));
     }
@@ -388,7 +307,7 @@ function (_Component) {
     value: function render() {
       return _react.default.createElement("div", {
         className: "calendarDayTask-full"
-      }, _react.default.createElement("div", null, this.props.hour), _react.default.createElement("div", null, this.props.taskType));
+      }, _react.default.createElement("div", null, this.props.data.name), _react.default.createElement("div", null, this.props.data.author));
     }
   }]);
 
@@ -525,7 +444,6 @@ function (_Component) {
       this.setState({
         selectedId: id
       });
-      console.log('222');
     }
   }, {
     key: "render",
@@ -556,10 +474,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
-
-var _sectionTasktDescription = _interopRequireDefault(require("./sectionTaskDescriptoin/sectionTasktDescription"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -595,7 +509,7 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SectionTask).call(this, props));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "section", [{
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "sections", [{
       id: 1,
       task: "Some Text"
     }, {
@@ -606,9 +520,6 @@ function (_Component) {
       task: "Some Text"
     }, {
       id: 4,
-      task: "Some Text"
-    }, {
-      id: 5,
       task: "Some Text"
     }]);
 
@@ -632,19 +543,29 @@ function (_Component) {
 
       return _react.default.createElement("div", {
         className: "sectionTask"
-      }, _react.default.createElement(_sectionTasktDescription.default, null), _react.default.createElement("div", {
+      }, _react.default.createElement("div", {
         className: "allSectionTasks"
-      }, this.section.map(function (item) {
-        return _react.default.createElement("div", {
-          key: item.id,
-          className: "sectionTaskItem",
-          onClick: function onClick(e) {
-            return _this2.press(item.id, e);
-          }
-        }, "Some Text");
+      }, this.sections.map(function (item, index) {
+        if (index < 5) {
+          return _react.default.createElement("div", null, _react.default.createElement("div", {
+            key: item.id,
+            className: "sectionTaskItem",
+            onClick: function onClick(e) {
+              return _this2.press(item.id, e);
+            }
+          }, "Some Text"));
+        } else if (index > 5) {
+          return _react.default.createElement("div", {
+            key: item.id,
+            className: "sectionTaskItem",
+            onClick: function onClick(e) {
+              return _this2.press(item.id, e);
+            }
+          }, "Some Text");
+        } else {}
       }), _react.default.createElement("div", {
-        className: "hoveredTask"
-      }, "2 more...")));
+        className: this.sections.length > 5 ? "hoveredTask" : "hoveredTask hide"
+      }, this.sections.length - 5, " more...")));
     }
   }]);
 
@@ -704,21 +625,21 @@ function (_Component) {
         className: "taskHeaderDiv"
       }, _react.default.createElement("div", {
         className: "taskCompanyName"
-      }, "Coca-Cola"), _react.default.createElement("div", {
+      }, this.props.data.name), _react.default.createElement("div", {
         className: "taskUserName"
-      }, "User 1")), _react.default.createElement("div", {
+      }, this.props.data.author)), _react.default.createElement("div", {
         className: "taskBtn"
       })), _react.default.createElement("div", {
         className: "taskDate"
       }, _react.default.createElement("div", {
         className: "startDate"
-      }, "Nov 28, 2018 12 AM to"), _react.default.createElement("div", {
+      }, this.props.data.hourStart, " to"), _react.default.createElement("div", {
         className: "finsshDate"
-      }, "Nov 30, 2018 12:59 PM")), _react.default.createElement("div", {
+      }, this.props.data.hourFinish)), _react.default.createElement("div", {
         className: "taskDescrText"
-      }, "SomeText, SomeText"), _react.default.createElement("div", {
+      }, this.props.data.textfirst), _react.default.createElement("div", {
         className: "taskDescrText"
-      }, "SomeText, SomeText"));
+      }, this.props.data.textsecond));
     }
   }]);
 
@@ -1207,6 +1128,42 @@ function (_Component) {
 }(_react.Component);
 
 var _default = CalendarMonth;
+exports.default = _default;
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var calendarDayData = [{
+  id: 1,
+  tenSecond: 1,
+  hourStart: 1,
+  hourFinish: 1,
+  name: "Coca-Cola",
+  author: "BatMan",
+  textfirst: "Some Text Some Text",
+  textsecond: "Some Text Some Text"
+}, {
+  id: 2,
+  tenSecond: 1,
+  hourStart: 2,
+  hourFinish: 24,
+  name: "Pepsi",
+  author: "BatMan",
+  textfirst: "Some Text Some Text",
+  textsecond: "Some Text Some Text"
+}, {
+  id: 3,
+  tenSecond: 5,
+  hourStart: 3,
+  hourFinish: 11,
+  name: "7up",
+  author: "PacMan",
+  textfirst: "Some Text Some Text",
+  textsecond: "Some Text Some Text"
+}];
+var _default = calendarDayData;
 exports.default = _default;
 "use strict";
 

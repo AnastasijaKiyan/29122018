@@ -23,35 +23,28 @@ var CalendarDayBody = /** @class */ (function (_super) {
         _this.hours = [
             1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24
         ];
-        _this.tasks = [
-            { id: 1, hour: '00:00 AM', taskType: 'Adver 1' },
-            { id: 2, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 3, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 4, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 5, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 6, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 7, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 8, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 9, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 10, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 11, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 12, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 13, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 14, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 15, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 16, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 17, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 18, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 19, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 20, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 21, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 22, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 23, hour: '01:00 AM', taskType: 'Adver 2' },
-            { id: 24, hour: '01:00 AM', taskType: 'Adver 2' },
-        ];
+        _this.validator(props.data);
         _this.state = { taskSelectedId: 2 };
         return _this;
     }
+    CalendarDayBody.prototype.validator = function (data) {
+        data.forEach(function (item) {
+            if (item.tenSecond < 1)
+                throw Error("Property 'tenSecond' can't be less than 1.");
+            if (item.tenSecond > 18)
+                throw Error("Property 'tenSecond' can't be more than 18.");
+            if (item.hourStart < 1)
+                throw Error("Property 'hourStart' can't be less than 1.");
+            if (item.hourStart > 24)
+                throw Error("Property 'hourStart' can't be more than 24.");
+            if (item.hourFinish < 1)
+                throw Error("Property 'hourFinish' can't be less than 1.");
+            if (item.hourFinish > 24)
+                throw Error("Property 'hourFinish' can't be more than 24.");
+            if (item.hourStart > item.hourFinish)
+                throw Error("Property 'hourStart' can't be more than property 'hourFinish'.");
+        });
+    };
     CalendarDayBody.prototype.render = function () {
         return (react_1["default"].createElement("div", { className: "calendarDayBody" },
             react_1["default"].createElement(calendarDayTimer_1["default"], null),
@@ -60,8 +53,8 @@ var CalendarDayBody = /** @class */ (function (_super) {
                     return react_1["default"].createElement("div", { className: "hour" }, e);
                 })),
                 react_1["default"].createElement("div", { className: "body-empty" }),
-                react_1["default"].createElement("div", { className: 'calendarDayTasks' }, this.tasks.map(function (el) {
-                    return react_1["default"].createElement(calendarDayTask_1["default"], { key: el.id, id: el.id, hour: el.hour, taskType: el.taskType });
+                react_1["default"].createElement("div", { className: 'calendarDayTasks' }, this.props.data.map(function (el) {
+                    return react_1["default"].createElement(calendarDayTask_1["default"], { key: el.id, data: el });
                 })))));
     };
     return CalendarDayBody;

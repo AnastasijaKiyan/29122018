@@ -20,7 +20,6 @@ class CalendarBodySection extends Component <IProps, State> {
 
   press(id: number, e: React.MouseEvent<HTMLDivElement>): void {
     this.setState({ selectedId: id });
-    console.log('222');
   }
 
   

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { IDay } from "../../../type/IDay";
 import CalendarBodySection from "./calenarBodySection/calendarBodySection";
 
 interface IProps {
