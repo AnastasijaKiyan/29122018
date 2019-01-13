@@ -11,15 +11,7 @@ type Props = {};
 type State = { selectedId: number };
 
 class SectionTask extends Component<Props, State> {
-  // private sections: Section[] = [
-  //   { id: 1, task: "Some Text" },
-  //   { id: 2, task: "Some Text" },
-  //   { id: 3, task: "Some Text" },
-  //   { id: 4, task: "Some Text" },
-  //   { id: 5, task: "Some Text" },
-  //   { id: 6, task: "Some Text" },
-  //   { id: 7, task: "Some Text" }
-  // ];
+
 
   private sections: ICompany[] = calendarDayData;
 
@@ -33,10 +25,11 @@ class SectionTask extends Component<Props, State> {
   }
 
   render() {
+    let maxLength: number = 4;
     return (
       <div className="allSectionTasks">
         {this.sections.map((item: ICompany, index: number) => {
-          if (index < 4) {
+          if (index < maxLength) {
             return (
               <div>
                 <div
@@ -48,17 +41,17 @@ class SectionTask extends Component<Props, State> {
                 </div>
               </div>
             );
-          } else if (index > 4) {
+          } else if (index > maxLength) {
             return null;
           } else {
           }
         })}
         <div
           className={
-            this.sections.length > 5 ? "hoveredTask" : "hoveredTask hide"
+            this.sections.length > maxLength ? "hoveredTask" : "hoveredTask hide"
           }
         >
-          {this.sections.length - 4} more...
+          {this.sections.length - maxLength} more...
         </div>
       </div>
     );
