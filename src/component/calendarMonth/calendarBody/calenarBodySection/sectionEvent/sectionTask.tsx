@@ -39,6 +39,16 @@ class SectionTask extends Component<Props, State> {
                 >
                   {item.name}
                 </div>
+                {
+                  
+                }
+
+
+                <SectionTaskDescription
+                  companyId={item.id}
+                  isVisiable={false}
+                >
+                </SectionTaskDescription>
               </div>
             );
           } else if (index > maxLength) {
