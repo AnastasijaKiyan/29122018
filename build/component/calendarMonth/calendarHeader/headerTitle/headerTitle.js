@@ -14,12 +14,12 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var react_1 = require("react");
-var _DIMENSION = ["Day", "Week", "Month"];
+var _DIMENSION = ["Day", "Month"];
 var HeaderTitle = /** @class */ (function (_super) {
     __extends(HeaderTitle, _super);
     function HeaderTitle() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.state = { typeDateSelectedId: 2 };
+        _this.state = { typeDateSelectedId: 1 };
         return _this;
     }
     HeaderTitle.prototype.press = function (id) {

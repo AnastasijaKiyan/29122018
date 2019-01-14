@@ -18,7 +18,7 @@ export const _campaign = {
 	_id: "sadfasfasf",
 	name: "Coca",
 	author: "Batman",
-	periodStart: 1547138903,
+	periodStart: 1111111111,
 	periodEnd: 1547195903,
 	schedule: [
 		{

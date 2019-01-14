@@ -100,11 +100,7 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _calendarDayBody = _interopRequireDefault(require("../calendarDay/calendarDayBody/calendarDayBody"));
 
-var _companies = _interopRequireDefault(require("../../data/companies"));
-
-var _headerButtons = _interopRequireDefault(require("../calendarMonth/calendarHeader/headerButtons/headerButtons"));
-
-var _headerTitle = _interopRequireDefault(require("../calendarMonth/calendarHeader/headerTitle/headerTitle"));
+var _calendarDayData = _interopRequireDefault(require("../../data/calendarDayData"));
 
 require("../../index.sass");
 
@@ -146,10 +142,8 @@ function (_Component) {
     value: function render() {
       return _react.default.createElement("div", {
         className: "calendarDay"
-      }, _react.default.createElement("div", {
-        className: "calendarHeader"
-      }, _react.default.createElement(_headerButtons.default, null), _react.default.createElement(_headerTitle.default, null)), _react.default.createElement(_calendarDayBody.default, {
-        data: _companies.default
+      }, _react.default.createElement(_calendarDayBody.default, {
+        data: _calendarDayData.default
       }));
     }
   }]);
@@ -475,6 +469,12 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _sectionTasktDescription = _interopRequireDefault(require("./sectionTaskDescriptoin/sectionTasktDescription"));
+
+var _calendarDayData = _interopRequireDefault(require("../../../../../data/calendarDayData"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -509,19 +509,7 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SectionTask).call(this, props));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "sections", [{
-      id: 1,
-      task: "Some Text"
-    }, {
-      id: 2,
-      task: "Some Text"
-    }, {
-      id: 3,
-      task: "Some Text"
-    }, {
-      id: 4,
-      task: "Some Text"
-    }]);
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "sections", _calendarDayData.default);
 
     _this.state = {
       selectedId: 15
@@ -535,37 +523,34 @@ function (_Component) {
       this.setState({
         selectedId: id
       });
+      console.log(id);
     }
   }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
+      var maxLength = 4;
       return _react.default.createElement("div", {
-        className: "sectionTask"
-      }, _react.default.createElement("div", {
         className: "allSectionTasks"
       }, this.sections.map(function (item, index) {
-        if (index < 5) {
+        if (index < maxLength) {
           return _react.default.createElement("div", null, _react.default.createElement("div", {
             key: item.id,
             className: "sectionTaskItem",
             onClick: function onClick(e) {
               return _this2.press(item.id, e);
             }
-          }, "Some Text"));
-        } else if (index > 5) {
-          return _react.default.createElement("div", {
-            key: item.id,
-            className: "sectionTaskItem",
-            onClick: function onClick(e) {
-              return _this2.press(item.id, e);
-            }
-          }, "Some Text");
+          }, item.name), _react.default.createElement(_sectionTasktDescription.default, {
+            companyId: item.id,
+            isVisiable: false
+          }));
+        } else if (index > maxLength) {
+          return null;
         } else {}
       }), _react.default.createElement("div", {
-        className: this.sections.length > 5 ? "hoveredTask" : "hoveredTask hide"
-      }, this.sections.length - 5, " more...")));
+        className: this.sections.length > maxLength ? "hoveredTask" : "hoveredTask hide"
+      }, this.sections.length - maxLength, " more..."));
     }
   }]);
 
@@ -582,6 +567,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
+
+var _calendarDayData = _interopRequireDefault(require("../../../../../../data/calendarDayData"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -615,31 +604,41 @@ function (_Component) {
   }
 
   _createClass(SectionTaskDescription, [{
+    key: "getCompanyById",
+    value: function getCompanyById(companyId) {
+      return _calendarDayData.default.find(function (item) {
+        return item.id == companyId;
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      if (this.props.companyId == 0) return null;
+      var company = this.getCompanyById(this.props.companyId);
+      if (!company) return null;
       return _react.default.createElement("div", {
-        className: "taskDescription"
+        className: "taskDescription " + (this.props.isVisiable ? "displayed" : "hide")
       }, _react.default.createElement("div", {
         className: "taskHeader"
       }, _react.default.createElement("div", {
         className: "taskHeaderDiv"
       }, _react.default.createElement("div", {
         className: "taskCompanyName"
-      }, this.props.data.name), _react.default.createElement("div", {
+      }, company.name), _react.default.createElement("div", {
         className: "taskUserName"
-      }, this.props.data.author)), _react.default.createElement("div", {
+      }, company.author)), _react.default.createElement("div", {
         className: "taskBtn"
       })), _react.default.createElement("div", {
         className: "taskDate"
       }, _react.default.createElement("div", {
         className: "startDate"
-      }, this.props.data.hourStart, " to"), _react.default.createElement("div", {
+      }, company.dateStart, " to"), _react.default.createElement("div", {
         className: "finsshDate"
-      }, this.props.data.hourFinish)), _react.default.createElement("div", {
+      }, company.dateFinish)), _react.default.createElement("div", {
         className: "taskDescrText"
-      }, this.props.data.textfirst), _react.default.createElement("div", {
+      }, company.textfirst), _react.default.createElement("div", {
         className: "taskDescrText"
-      }, this.props.data.textsecond));
+      }, company.textsecond));
     }
   }]);
 
@@ -919,7 +918,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var _DIMENSION = ["Day", "Week", "Month"];
+var _DIMENSION = ["Day", "Month"];
 
 var HeaderTitle =
 /*#__PURE__*/
@@ -940,7 +939,7 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(HeaderTitle)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      typeDateSelectedId: 2
+      typeDateSelectedId: 1
     });
 
     return _this;
@@ -1138,8 +1137,8 @@ exports.default = void 0;
 var calendarDayData = [{
   id: 1,
   tenSecond: 1,
-  hourStart: 1,
-  hourFinish: 1,
+  dateStart: 1,
+  dateFinish: 1,
   name: "Coca-Cola",
   author: "BatMan",
   textfirst: "Some Text Some Text",
@@ -1147,8 +1146,8 @@ var calendarDayData = [{
 }, {
   id: 2,
   tenSecond: 1,
-  hourStart: 2,
-  hourFinish: 24,
+  dateStart: 2,
+  dateFinish: 24,
   name: "Pepsi",
   author: "BatMan",
   textfirst: "Some Text Some Text",
@@ -1156,10 +1155,37 @@ var calendarDayData = [{
 }, {
   id: 3,
   tenSecond: 5,
-  hourStart: 3,
-  hourFinish: 11,
+  dateStart: 3,
+  dateFinish: 11,
   name: "7up",
-  author: "PacMan",
+  author: "PacBack",
+  textfirst: "Some Text Some Text",
+  textsecond: "Some Text Some Text"
+}, {
+  id: 4,
+  tenSecond: 12,
+  dateStart: 22,
+  dateFinish: 24,
+  name: "7up",
+  author: "PacBack",
+  textfirst: "Some Text Some Text",
+  textsecond: "Some Text Some Text"
+}, {
+  id: 5,
+  tenSecond: 8,
+  dateStart: 4,
+  dateFinish: 6,
+  name: "7up",
+  author: "PacBack",
+  textfirst: "Some Text Some Text",
+  textsecond: "Some Text Some Text"
+}, {
+  id: 6,
+  tenSecond: 10,
+  dateStart: 10,
+  dateFinish: 11,
+  name: "7up",
+  author: "PacBack",
   textfirst: "Some Text Some Text",
   textsecond: "Some Text Some Text"
 }];

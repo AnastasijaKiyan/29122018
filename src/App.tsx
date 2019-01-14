@@ -25,7 +25,7 @@ export default class App extends Component<{}, IState> {
       <div>
         <CalendarMonth />
         <br/>
-        <CalendarDay/>
+        {/* <CalendarDay/> */}
       </div>
     );
   }

@@ -14,40 +14,39 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var react_1 = require("react");
+var sectionTasktDescription_1 = require("./sectionTaskDescriptoin/sectionTasktDescription");
+var calendarDayData_1 = require("../../../../../data/calendarDayData");
 var SectionTask = /** @class */ (function (_super) {
     __extends(SectionTask, _super);
     function SectionTask(props) {
         var _this = _super.call(this, props) || this;
-        _this.sections = [
-            { id: 1, task: "Some Text" },
-            { id: 2, task: "Some Text" },
-            { id: 3, task: "Some Text" },
-            { id: 4, task: "Some Text" },
-        ];
+        _this.sections = calendarDayData_1["default"];
         _this.state = { selectedId: 15 };
         return _this;
     }
     SectionTask.prototype.press = function (id, e) {
         this.setState({ selectedId: id });
+        console.log(id);
     };
     SectionTask.prototype.render = function () {
         var _this = this;
-        return (react_1["default"].createElement("div", { className: "sectionTask" },
-            react_1["default"].createElement("div", { className: "allSectionTasks" },
-                this.sections.map(function (item, index) {
-                    if (index < 5) {
-                        return (react_1["default"].createElement("div", null,
-                            react_1["default"].createElement("div", { key: item.id, className: "sectionTaskItem", onClick: function (e) { return _this.press(item.id, e); } }, "Some Text")));
-                    }
-                    else if (index > 5) {
-                        return (react_1["default"].createElement("div", { key: item.id, className: "sectionTaskItem", onClick: function (e) { return _this.press(item.id, e); } }, "Some Text"));
-                    }
-                    else {
-                    }
-                }),
-                react_1["default"].createElement("div", { className: this.sections.length > 5 ? "hoveredTask" : "hoveredTask hide" },
-                    this.sections.length - 5,
-                    " more..."))));
+        var maxLength = 4;
+        return (react_1["default"].createElement("div", { className: "allSectionTasks" },
+            this.sections.map(function (item, index) {
+                if (index < maxLength) {
+                    return (react_1["default"].createElement("div", null,
+                        react_1["default"].createElement("div", { key: item.id, className: "sectionTaskItem", onClick: function (e) { return _this.press(item.id, e); } }, item.name),
+                        react_1["default"].createElement(sectionTasktDescription_1["default"], { companyId: item.id, isVisiable: false })));
+                }
+                else if (index > maxLength) {
+                    return null;
+                }
+                else {
+                }
+            }),
+            react_1["default"].createElement("div", { className: this.sections.length > maxLength ? "hoveredTask" : "hoveredTask hide" },
+                this.sections.length - maxLength,
+                " more...")));
     };
     return SectionTask;
 }(react_1.Component));

@@ -1,8 +1,8 @@
 interface ICompany {
 	id: number;
 	tenSecond: number;
-	hourStart: number;
-	hourFinish: number;
+	dateStart: number;
+	dateFinish: number;
 	name: string;
 	author: string;
 	textfirst: string;

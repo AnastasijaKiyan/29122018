@@ -3,10 +3,6 @@ import SectionTaskDescription from "./sectionTaskDescriptoin/sectionTasktDescrip
 import ICompany from "../../../../../type/ICompany";
 import calendarDayData from "../../../../../data/calendarDayData";
 
-// interface Section {
-//   id: number;
-//   task: string;
-// }
 type Props = {};
 type State = { selectedId: number };
 
@@ -25,6 +21,7 @@ class SectionTask extends Component<Props, State> {
   }
 
   render() {
+    let cheked: number = this.state.selectedId;
     let maxLength: number = 4;
     return (
       <div className="allSectionTasks">
@@ -38,17 +35,10 @@ class SectionTask extends Component<Props, State> {
                   onClick={e => this.press(item.id, e)}
                 >
                   {item.name}
+                
+                  <SectionTaskDescription/>
+              
                 </div>
-                {
-                  
-                }
-
-
-                <SectionTaskDescription
-                  companyId={item.id}
-                  isVisiable={false}
-                >
-                </SectionTaskDescription>
               </div>
             );
           } else if (index > maxLength) {
