@@ -16,7 +16,6 @@ exports.__esModule = true;
 var react_1 = require("react");
 var Reducer = require("./reducer/reducer");
 var calendarMonth_1 = require("./component/calendarMonth/calendarMonth");
-var calendarDay_1 = require("./component/calendarDay/calendarDay");
 require("./index.sass");
 var App = /** @class */ (function (_super) {
     __extends(App, _super);
@@ -38,8 +37,7 @@ var App = /** @class */ (function (_super) {
     App.prototype.render = function () {
         return (react_1["default"].createElement("div", null,
             react_1["default"].createElement(calendarMonth_1["default"], null),
-            react_1["default"].createElement("br", null),
-            react_1["default"].createElement(calendarDay_1["default"], null)));
+            react_1["default"].createElement("br", null)));
     };
     return App;
 }(react_1.Component));

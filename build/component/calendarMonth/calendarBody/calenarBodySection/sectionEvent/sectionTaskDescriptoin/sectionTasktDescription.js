@@ -18,30 +18,29 @@ var calendarDayData_1 = require("../../../../../../data/calendarDayData");
 var SectionTaskDescription = /** @class */ (function (_super) {
     __extends(SectionTaskDescription, _super);
     function SectionTaskDescription(props) {
-        return _super.call(this, props) || this;
+        var _this = _super.call(this, props) || this;
+        _this.companies = calendarDayData_1["default"];
+        _this.state = { selectedId: 15 };
+        return _this;
     }
-    SectionTaskDescription.prototype.getCompanyById = function (companyId) {
-        return calendarDayData_1["default"].find(function (item) { return item.id == companyId; });
+    SectionTaskDescription.prototype.press = function (id, e) {
+        this.setState({ selectedId: id });
     };
     SectionTaskDescription.prototype.render = function () {
-        if (this.props.companyId == 0)
-            return null;
-        var company = this.getCompanyById(this.props.companyId);
-        if (!company)
-            return null;
-        return (react_1["default"].createElement("div", { className: "taskDescription " + (this.props.isVisiable ? "displayed" : "hide") },
+        console.log(this.companies);
+        return (react_1["default"].createElement("div", { className: "taskDescription" },
             react_1["default"].createElement("div", { className: "taskHeader" },
                 react_1["default"].createElement("div", { className: "taskHeaderDiv" },
-                    react_1["default"].createElement("div", { className: "taskCompanyName" }, company.name),
-                    react_1["default"].createElement("div", { className: "taskUserName" }, company.author)),
+                    react_1["default"].createElement("div", { className: "taskCompanyName" }, 'this.myCompany.name'),
+                    react_1["default"].createElement("div", { className: "taskUserName" }, 'this.myCompany.author')),
                 react_1["default"].createElement("div", { className: "taskBtn" })),
             react_1["default"].createElement("div", { className: "taskDate" },
                 react_1["default"].createElement("div", { className: "startDate" },
-                    company.dateStart,
+                    'this.myCompany.dateStart',
                     " to"),
-                react_1["default"].createElement("div", { className: "finsshDate" }, company.dateFinish)),
-            react_1["default"].createElement("div", { className: "taskDescrText" }, company.textfirst),
-            react_1["default"].createElement("div", { className: "taskDescrText" }, company.textsecond)));
+                react_1["default"].createElement("div", { className: "finsshDate" }, 'this.myCompany.dateFinish')),
+            react_1["default"].createElement("div", { className: "taskDescrText" }, 'this.myCompany.textfirst'),
+            react_1["default"].createElement("div", { className: "taskDescrText" }, 'this.myCompany.textsecond')));
     };
     return SectionTaskDescription;
 }(react_1.Component));

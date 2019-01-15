@@ -26,17 +26,18 @@ var SectionTask = /** @class */ (function (_super) {
     }
     SectionTask.prototype.press = function (id, e) {
         this.setState({ selectedId: id });
-        console.log(id);
     };
     SectionTask.prototype.render = function () {
         var _this = this;
+        var cheked = this.state.selectedId;
         var maxLength = 4;
         return (react_1["default"].createElement("div", { className: "allSectionTasks" },
             this.sections.map(function (item, index) {
                 if (index < maxLength) {
                     return (react_1["default"].createElement("div", null,
-                        react_1["default"].createElement("div", { key: item.id, className: "sectionTaskItem", onClick: function (e) { return _this.press(item.id, e); } }, item.name),
-                        react_1["default"].createElement(sectionTasktDescription_1["default"], { companyId: item.id, isVisiable: false })));
+                        react_1["default"].createElement("div", { key: item.id, className: "sectionTaskItem", onClick: function (e) { return _this.press(item.id, e); } },
+                            item.name,
+                            react_1["default"].createElement(sectionTasktDescription_1["default"], null))));
                 }
                 else if (index > maxLength) {
                     return null;

@@ -11,8 +11,6 @@ var Reducer = _interopRequireWildcard(require("./reducer/reducer"));
 
 var _calendarMonth = _interopRequireDefault(require("./component/calendarMonth/calendarMonth"));
 
-var _calendarDay = _interopRequireDefault(require("./component/calendarDay/calendarDay"));
-
 require("./index.sass");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -81,7 +79,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return _react.default.createElement("div", null, _react.default.createElement(_calendarMonth.default, null), _react.default.createElement("br", null), _react.default.createElement(_calendarDay.default, null));
+      return _react.default.createElement("div", null, _react.default.createElement(_calendarMonth.default, null), _react.default.createElement("br", null));
     }
   }]);
 
@@ -218,11 +216,11 @@ function (_Component) {
       data.forEach(function (item) {
         if (item.tenSecond < 1) throw Error("Property 'tenSecond' can't be less than 1.");
         if (item.tenSecond > 18) throw Error("Property 'tenSecond' can't be more than 18.");
-        if (item.hourStart < 1) throw Error("Property 'hourStart' can't be less than 1.");
-        if (item.hourStart > 24) throw Error("Property 'hourStart' can't be more than 24.");
-        if (item.hourFinish < 1) throw Error("Property 'hourFinish' can't be less than 1.");
-        if (item.hourFinish > 24) throw Error("Property 'hourFinish' can't be more than 24.");
-        if (item.hourStart > item.hourFinish) throw Error("Property 'hourStart' can't be more than property 'hourFinish'.");
+        if (item.dateStart < 1) throw Error("Property 'hourStart' can't be less than 1.");
+        if (item.dateStart > 24) throw Error("Property 'hourStart' can't be more than 24.");
+        if (item.dateFinish < 1) throw Error("Property 'hourFinish' can't be less than 1.");
+        if (item.dateFinish > 24) throw Error("Property 'hourFinish' can't be more than 24.");
+        if (item.dateStart > item.dateFinish) throw Error("Property 'hourStart' can't be more than property 'hourFinish'.");
       });
     }
   }, {
@@ -523,13 +521,13 @@ function (_Component) {
       this.setState({
         selectedId: id
       });
-      console.log(id);
     }
   }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
+      var cheked = this.state.selectedId;
       var maxLength = 4;
       return _react.default.createElement("div", {
         className: "allSectionTasks"
@@ -541,10 +539,7 @@ function (_Component) {
             onClick: function onClick(e) {
               return _this2.press(item.id, e);
             }
-          }, item.name), _react.default.createElement(_sectionTasktDescription.default, {
-            companyId: item.id,
-            isVisiable: false
-          }));
+          }, item.name, _react.default.createElement(_sectionTasktDescription.default, null)));
         } else if (index > maxLength) {
           return null;
         } else {}
@@ -584,13 +579,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var SectionTaskDescription =
 /*#__PURE__*/
@@ -598,47 +595,54 @@ function (_Component) {
   _inherits(SectionTaskDescription, _Component);
 
   function SectionTaskDescription(props) {
+    var _this;
+
     _classCallCheck(this, SectionTaskDescription);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(SectionTaskDescription).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(SectionTaskDescription).call(this, props));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "companies", _calendarDayData.default);
+
+    _this.state = {
+      selectedId: 15
+    };
+    return _this;
   }
 
   _createClass(SectionTaskDescription, [{
-    key: "getCompanyById",
-    value: function getCompanyById(companyId) {
-      return _calendarDayData.default.find(function (item) {
-        return item.id == companyId;
+    key: "press",
+    value: function press(id, e) {
+      this.setState({
+        selectedId: id
       });
     }
   }, {
     key: "render",
     value: function render() {
-      if (this.props.companyId == 0) return null;
-      var company = this.getCompanyById(this.props.companyId);
-      if (!company) return null;
+      console.log(this.companies);
       return _react.default.createElement("div", {
-        className: "taskDescription " + (this.props.isVisiable ? "displayed" : "hide")
+        className: "taskDescription"
       }, _react.default.createElement("div", {
         className: "taskHeader"
       }, _react.default.createElement("div", {
         className: "taskHeaderDiv"
       }, _react.default.createElement("div", {
         className: "taskCompanyName"
-      }, company.name), _react.default.createElement("div", {
+      }, 'this.myCompany.name'), _react.default.createElement("div", {
         className: "taskUserName"
-      }, company.author)), _react.default.createElement("div", {
+      }, 'this.myCompany.author')), _react.default.createElement("div", {
         className: "taskBtn"
       })), _react.default.createElement("div", {
         className: "taskDate"
       }, _react.default.createElement("div", {
         className: "startDate"
-      }, company.dateStart, " to"), _react.default.createElement("div", {
+      }, 'this.myCompany.dateStart', " to"), _react.default.createElement("div", {
         className: "finsshDate"
-      }, company.dateFinish)), _react.default.createElement("div", {
+      }, 'this.myCompany.dateFinish')), _react.default.createElement("div", {
         className: "taskDescrText"
-      }, company.textfirst), _react.default.createElement("div", {
+      }, 'this.myCompany.textfirst'), _react.default.createElement("div", {
         className: "taskDescrText"
-      }, company.textsecond));
+      }, 'this.myCompany.textsecond'));
     }
   }]);
 

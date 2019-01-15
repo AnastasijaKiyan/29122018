@@ -36,7 +36,7 @@ class SectionTask extends Component<Props, State> {
                 >
                   {item.name}
                 
-                  <SectionTaskDescription/>
+                  {/* <SectionTaskDescription/> */}
               
                 </div>
               </div>
