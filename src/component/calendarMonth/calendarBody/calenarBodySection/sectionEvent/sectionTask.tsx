@@ -32,7 +32,12 @@ class SectionTask extends Component<Props, State> {
     let cheked: number = this.state.selectedId;
     let maxLength: number = 4;
     return (
-      <div className="allSectionTasks">
+      <div>
+        {this.sections.map((item: ICompany, index: number) => {
+          if (item.dateStart == ) {
+
+          }
+        <div className="allSectionTasks">
         {this.sections.map((item: ICompany, index: number) => {
           if (index < maxLength) {
             return (
@@ -68,6 +73,8 @@ class SectionTask extends Component<Props, State> {
 
       </div>
     );
+      </div>
+      
   }
 }
 

@@ -16,8 +16,8 @@ interface ICompany {
 	rates?: "5c362c884284762b081ffefe",
 	zones?: ["5c3da8af5429cc3f88043e4c"],
 	__v?:0;
-	numberHits?: number;
-	duration?: number
+	numberHits?: number; //1,10,20,30,60
+	duration?: number // 10 сек
 }
 
 
