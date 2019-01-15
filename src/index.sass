@@ -96,16 +96,18 @@ body
                 height: 59px
                 font-size: 28px
                 align-items: center
+                justify-content: flex-start
+                width: 200px
               
 
                 .headerDateDay
-                    width: 300px
-                    font-family: 'ubuntu-medium'
+                    font-family: 'ubuntu-light'
+                    
 
 
                 .headerDateMonth
-                    width: 106px
                     font-family: 'ubuntu-medium'
+                    margin-left: 8px
 
 
                 .headerDateYear
@@ -198,8 +200,9 @@ body
             margin-bottom: 2px
             flex-grow: 1
 
-            &:hover
-                background-color: darken($color-green, 10%)
+        .pressed
+            background-color: darken($color-green, 10%)
+
 
 
 .hoveredTask
@@ -222,17 +225,22 @@ body
     box-shadow: 0 0 2px rgba(0,0,0,0.3)
     left: 30px
     top: -25px
+    color: $color-extradarkgrey
 
-    .displayed
+    .displayedSectionTaskDescription
         display: block
 
-    .hide
+    .hideSectionTaskDescription
         display: none
 
 .sectionTask
     position: relative
 
+.displayedSectionTaskDescription
+    visability: visible
 
+.hideSectionTaskDescription
+    visability: hiden
     
 
 .taskHeader

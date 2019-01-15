@@ -14,18 +14,22 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var react_1 = require("react");
-var sectionTasktDescription_1 = require("./sectionTaskDescriptoin/sectionTasktDescription");
 var calendarDayData_1 = require("../../../../../data/calendarDayData");
 var SectionTask = /** @class */ (function (_super) {
     __extends(SectionTask, _super);
     function SectionTask(props) {
         var _this = _super.call(this, props) || this;
         _this.sections = calendarDayData_1["default"];
-        _this.state = { selectedId: 15 };
+        _this.state = {
+            selectedId: 15,
+            isOpened: false
+        };
         return _this;
     }
     SectionTask.prototype.press = function (id, e) {
-        this.setState({ selectedId: id });
+        this.setState({
+            selectedId: id
+        });
     };
     SectionTask.prototype.render = function () {
         var _this = this;
@@ -35,9 +39,7 @@ var SectionTask = /** @class */ (function (_super) {
             this.sections.map(function (item, index) {
                 if (index < maxLength) {
                     return (react_1["default"].createElement("div", null,
-                        react_1["default"].createElement("div", { key: item.id, className: "sectionTaskItem", onClick: function (e) { return _this.press(item.id, e); } },
-                            item.name,
-                            react_1["default"].createElement(sectionTasktDescription_1["default"], null))));
+                        react_1["default"].createElement("div", { key: item.id, className: "sectionTaskItem", onClick: function (e) { return _this.press(item.id, e); } }, item.name)));
                 }
                 else if (index > maxLength) {
                     return null;
@@ -45,7 +47,9 @@ var SectionTask = /** @class */ (function (_super) {
                 else {
                 }
             }),
-            react_1["default"].createElement("div", { className: this.sections.length > maxLength ? "hoveredTask" : "hoveredTask hide" },
+            react_1["default"].createElement("div", { className: this.sections.length > maxLength
+                    ? "hoveredTask"
+                    : "hoveredTask hide" },
                 this.sections.length - maxLength,
                 " more...")));
     };

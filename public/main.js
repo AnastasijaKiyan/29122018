@@ -214,8 +214,10 @@ function (_Component) {
     key: "validator",
     value: function validator(data) {
       data.forEach(function (item) {
-        if (item.tenSecond < 1) throw Error("Property 'tenSecond' can't be less than 1.");
-        if (item.tenSecond > 18) throw Error("Property 'tenSecond' can't be more than 18.");
+        // if (item.tenSecond < 1)
+        //   throw Error("Property 'tenSecond' can't be less than 1.");
+        // if (item.tenSecond > 18)
+        //   throw Error("Property 'tenSecond' can't be more than 18.");
         if (item.dateStart < 1) throw Error("Property 'hourStart' can't be less than 1.");
         if (item.dateStart > 24) throw Error("Property 'hourStart' can't be more than 24.");
         if (item.dateFinish < 1) throw Error("Property 'hourFinish' can't be less than 1.");
@@ -467,8 +469,6 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _sectionTasktDescription = _interopRequireDefault(require("./sectionTaskDescriptoin/sectionTasktDescription"));
-
 var _calendarDayData = _interopRequireDefault(require("../../../../../data/calendarDayData"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -510,7 +510,8 @@ function (_Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "sections", _calendarDayData.default);
 
     _this.state = {
-      selectedId: 15
+      selectedId: 15,
+      isOpened: false
     };
     return _this;
   }
@@ -539,7 +540,7 @@ function (_Component) {
             onClick: function onClick(e) {
               return _this2.press(item.id, e);
             }
-          }, item.name, _react.default.createElement(_sectionTasktDescription.default, null)));
+          }, item.name));
         } else if (index > maxLength) {
           return null;
         } else {}
@@ -594,6 +595,7 @@ var SectionTaskDescription =
 function (_Component) {
   _inherits(SectionTaskDescription, _Component);
 
+  //private myCompany: ICompany = this.companies.map((el: ICompany, index: number, arr: ICompany[]) => el);
   function SectionTaskDescription(props) {
     var _this;
 
@@ -619,30 +621,31 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.companies);
-      return _react.default.createElement("div", {
-        className: "taskDescription"
-      }, _react.default.createElement("div", {
-        className: "taskHeader"
-      }, _react.default.createElement("div", {
-        className: "taskHeaderDiv"
-      }, _react.default.createElement("div", {
-        className: "taskCompanyName"
-      }, 'this.myCompany.name'), _react.default.createElement("div", {
-        className: "taskUserName"
-      }, 'this.myCompany.author')), _react.default.createElement("div", {
-        className: "taskBtn"
-      })), _react.default.createElement("div", {
-        className: "taskDate"
-      }, _react.default.createElement("div", {
-        className: "startDate"
-      }, 'this.myCompany.dateStart', " to"), _react.default.createElement("div", {
-        className: "finsshDate"
-      }, 'this.myCompany.dateFinish')), _react.default.createElement("div", {
-        className: "taskDescrText"
-      }, 'this.myCompany.textfirst'), _react.default.createElement("div", {
-        className: "taskDescrText"
-      }, 'this.myCompany.textsecond'));
+      return _react.default.createElement("div", null, this.companies.map(function (el) {
+        _react.default.createElement("div", {
+          className: "taskDescription"
+        }, _react.default.createElement("div", {
+          className: "taskHeader"
+        }, _react.default.createElement("div", {
+          className: "taskHeaderDiv"
+        }, _react.default.createElement("div", {
+          className: "taskCompanyName"
+        }, el.name), _react.default.createElement("div", {
+          className: "taskUserName"
+        }, el.author)), _react.default.createElement("div", {
+          className: "taskBtn"
+        })), _react.default.createElement("div", {
+          className: "taskDate"
+        }, _react.default.createElement("div", {
+          className: "startDate"
+        }, el.dateStart, " to"), _react.default.createElement("div", {
+          className: "finsshDate"
+        }, el.dateFinish)), _react.default.createElement("div", {
+          className: "taskDescrText"
+        }, el.textfirst), _react.default.createElement("div", {
+          className: "taskDescrText"
+        }, el.textsecond));
+      }));
     }
   }]);
 
@@ -900,6 +903,10 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
+var _moment = _interopRequireDefault(require("moment"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -943,7 +950,8 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(HeaderTitle)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "state", {
-      typeDateSelectedId: 1
+      typeDateSelectedIndex: 1,
+      date: new Date()
     });
 
     return _this;
@@ -953,18 +961,68 @@ function (_Component) {
     key: "press",
     value: function press(id) {
       this.setState({
-        typeDateSelectedId: id
+        typeDateSelectedIndex: id
       });
     }
   }, {
     key: "left",
     value: function left() {
-      console.log("left");
+      var date = this.state.date;
+
+      switch (this.state.typeDateSelectedIndex) {
+        case 0:
+          // Day
+          date.setDate(date.getDate() - 1);
+          this.setState({
+            date: date
+          });
+          break;
+
+        case 1:
+          // Month
+          date.setMonth(date.getMonth() - 1);
+          this.setState({
+            date: date
+          });
+          break;
+
+        default:
+          return;
+      }
     }
   }, {
     key: "right",
     value: function right() {
-      console.log("right");
+      var date = this.state.date;
+
+      switch (this.state.typeDateSelectedIndex) {
+        case 0:
+          // Day
+          date.setDate(date.getDate() + 1);
+          this.setState({
+            date: date
+          });
+          break;
+
+        case 1:
+          // Month
+          date.setMonth(date.getMonth() + 1);
+          this.setState({
+            date: date
+          });
+          break;
+
+        default:
+          return;
+      }
+    }
+  }, {
+    key: "today",
+    value: function today() {
+      var date = new Date();
+      this.setState({
+        date: date
+      });
     }
   }, {
     key: "render",
@@ -973,13 +1031,7 @@ function (_Component) {
 
       return _react.default.createElement("div", {
         className: "headerTitle"
-      }, _react.default.createElement("div", {
-        className: "headerData"
-      }, _react.default.createElement("div", {
-        className: "headerDataMonth"
-      }, "October"), _react.default.createElement("div", {
-        className: "headerDataYear"
-      }, "2018")), _react.default.createElement("ul", {
+      }, this._getDateHTMLElement(), _react.default.createElement("ul", {
         className: "headerTypeData"
       }, _DIMENSION.map(this._getDimension.bind(this))), _react.default.createElement("div", {
         className: "headerToggleData"
@@ -988,7 +1040,11 @@ function (_Component) {
         onClick: function onClick() {
           return _this2.left();
         }
-      })), _react.default.createElement("span", null, "Today"), _react.default.createElement("span", null, _react.default.createElement("img", {
+      })), _react.default.createElement("span", {
+        onClick: function onClick() {
+          return _this2.today();
+        }
+      }, "Today"), _react.default.createElement("span", null, _react.default.createElement("img", {
         src: "./pict/r.png",
         onClick: function onClick() {
           return _this2.right();
@@ -998,7 +1054,7 @@ function (_Component) {
   }, {
     key: "_getDimension",
     value: function _getDimension(item, index) {
-      var isCurrent = this.state.typeDateSelectedId === index;
+      var isCurrent = this.state.typeDateSelectedIndex === index;
       var className = isCurrent ? "clicked" : "";
       var onClick = isCurrent ? undefined : this.press.bind(this, index);
       return _react.default.createElement("li", {
@@ -1006,6 +1062,20 @@ function (_Component) {
         className: className,
         onClick: onClick
       }, item);
+    }
+  }, {
+    key: "_getDateHTMLElement",
+    value: function _getDateHTMLElement() {
+      var date = this.state.date;
+      var currentDateIndex = this.state.typeDateSelectedIndex;
+      var dayElement = currentDateIndex == 0 ? _react.default.createElement("span", null, date.getDate()) : null;
+      return _react.default.createElement("div", {
+        className: "headerData"
+      }, dayElement, _react.default.createElement("span", {
+        className: "headerDateMonth"
+      }, (0, _moment.default)(date).format("MMMM")), _react.default.createElement("span", {
+        className: "headerDateYear"
+      }, date.getFullYear()));
     }
   }]);
 
@@ -1140,54 +1210,48 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var calendarDayData = [{
   id: 1,
-  tenSecond: 1,
-  dateStart: 1,
-  dateFinish: 1,
+  dateStart: 1546948800,
+  dateFinish: 1547078399,
   name: "Coca-Cola",
   author: "BatMan",
   textfirst: "Some Text Some Text",
   textsecond: "Some Text Some Text"
 }, {
   id: 2,
-  tenSecond: 1,
-  dateStart: 2,
-  dateFinish: 24,
+  dateStart: 1547078400,
+  dateFinish: 1547294400,
   name: "Pepsi",
   author: "BatMan",
   textfirst: "Some Text Some Text",
   textsecond: "Some Text Some Text"
 }, {
   id: 3,
-  tenSecond: 5,
-  dateStart: 3,
-  dateFinish: 11,
+  dateStart: 1548028800,
+  dateFinish: 1548072000,
   name: "7up",
   author: "PacBack",
   textfirst: "Some Text Some Text",
   textsecond: "Some Text Some Text"
 }, {
   id: 4,
-  tenSecond: 12,
-  dateStart: 22,
-  dateFinish: 24,
+  dateStart: 1548079200,
+  dateFinish: 1548079800,
   name: "7up",
   author: "PacBack",
   textfirst: "Some Text Some Text",
   textsecond: "Some Text Some Text"
 }, {
   id: 5,
-  tenSecond: 8,
-  dateStart: 4,
-  dateFinish: 6,
+  dateStart: 1548075600,
+  dateFinish: 1548077400,
   name: "7up",
   author: "PacBack",
   textfirst: "Some Text Some Text",
   textsecond: "Some Text Some Text"
 }, {
   id: 6,
-  tenSecond: 10,
-  dateStart: 10,
-  dateFinish: 11,
+  dateStart: 1548108000,
+  dateFinish: 1548111600,
   name: "7up",
   author: "PacBack",
   textfirst: "Some Text Some Text",

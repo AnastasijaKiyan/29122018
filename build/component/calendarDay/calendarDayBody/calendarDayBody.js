@@ -29,10 +29,10 @@ var CalendarDayBody = /** @class */ (function (_super) {
     }
     CalendarDayBody.prototype.validator = function (data) {
         data.forEach(function (item) {
-            if (item.tenSecond < 1)
-                throw Error("Property 'tenSecond' can't be less than 1.");
-            if (item.tenSecond > 18)
-                throw Error("Property 'tenSecond' can't be more than 18.");
+            // if (item.tenSecond < 1)
+            //   throw Error("Property 'tenSecond' can't be less than 1.");
+            // if (item.tenSecond > 18)
+            //   throw Error("Property 'tenSecond' can't be more than 18.");
             if (item.dateStart < 1)
                 throw Error("Property 'hourStart' can't be less than 1.");
             if (item.dateStart > 24)

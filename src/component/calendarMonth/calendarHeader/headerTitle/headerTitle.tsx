@@ -71,6 +71,7 @@ class HeaderTitle extends Component<Props, State> {
 					</span>
 				</div>
 			</div>
+			
 		);
 	}
 
