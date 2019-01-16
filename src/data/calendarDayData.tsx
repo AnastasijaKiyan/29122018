@@ -3,8 +3,8 @@ import ICompany from '../type/ICompany';
 let calendarDayData: ICompany[] = [
   {
     id: 1,
-    dateStart: 1546948800,
-    dateFinish: 1547078399,
+    dateStart: 1546300800, // 01-01-2019
+    dateFinish: 1548115200, // 22-01-2019
     name: "Coca-Cola",
     author: "BatMan",
     textfirst: "Some Text Some Text",
@@ -12,8 +12,8 @@ let calendarDayData: ICompany[] = [
   },
   {
     id: 2,
-    dateStart: 1547078400,
-    dateFinish: 1547294400,
+    dateStart: 1547078400, // 10-01-2019
+    dateFinish: 1547294400, // 12-01-2019
     name: "Pepsi",
     author: "BatMan",
     textfirst: "Some Text Some Text",
@@ -21,8 +21,8 @@ let calendarDayData: ICompany[] = [
   },
   {
     id: 3,
-    dateStart: 1548028800,
-    dateFinish: 1548072000,
+    dateStart: 1548028800, // 21-01-2019
+    dateFinish: 1548072000, // 21-01-2019
     name: "7up",
     author: "PacBack",
     textfirst: "Some Text Some Text",

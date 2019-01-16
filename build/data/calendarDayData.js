@@ -32,7 +32,7 @@ var calendarDayData = [
         id: 4,
         dateStart: 1548079200,
         dateFinish: 1548079800,
-        name: "7up",
+        name: "8up",
         author: "PacBack",
         textfirst: "Some Text Some Text",
         textsecond: "Some Text Some Text"
@@ -41,7 +41,7 @@ var calendarDayData = [
         id: 5,
         dateStart: 1548075600,
         dateFinish: 1548077400,
-        name: "7up",
+        name: "9up",
         author: "PacBack",
         textfirst: "Some Text Some Text",
         textsecond: "Some Text Some Text"
@@ -50,7 +50,7 @@ var calendarDayData = [
         id: 6,
         dateStart: 1548108000,
         dateFinish: 1548111600,
-        name: "7up",
+        name: "10up",
         author: "PacBack",
         textfirst: "Some Text Some Text",
         textsecond: "Some Text Some Text"

@@ -28,7 +28,7 @@ class CalendarBodySection extends Component <IProps, State> {
       <div className="calendarBodySection">
               <div className={this.state.selectedId == this.props.day ? "day calendarDayActive" : "day"}
               onClick={e => this.press(this.props.day, e)}>{this.props.day}</div>
-              <SectionTask />
+              <SectionTask key={this.props.day} day={this.props.day} month={this.props.month} year={this.props.year}/>
       </div>
     );
   }

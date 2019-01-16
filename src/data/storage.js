@@ -20,7 +20,7 @@ export const month = month => {
 export const yearData = () => {
   let data = [];
   for (let m = 0; m < 12; ++m) {
-    let day = moment({ year: 2018, month: m, day: 1 }); // формируем дату на первый день каждого месяца
+    let day = moment({ year: 2019, month: m, day: 1 }); // формируем дату на первый день каждого месяца
     let daysInMonth = day.daysInMonth(); // количество дней в месяце
     let month = {
       // готовим объект месяца

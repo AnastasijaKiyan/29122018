@@ -14,13 +14,11 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var react_1 = require("react");
-var calendarDayData_1 = require("../../../../../../data/calendarDayData");
+;
 var SectionTaskDescription = /** @class */ (function (_super) {
     __extends(SectionTaskDescription, _super);
-    //private myCompany: ICompany = this.companies.map((el: ICompany, index: number, arr: ICompany[]) => el);
     function SectionTaskDescription(props) {
         var _this = _super.call(this, props) || this;
-        _this.companies = calendarDayData_1["default"];
         _this.state = { selectedId: 15 };
         return _this;
     }
@@ -28,7 +26,8 @@ var SectionTaskDescription = /** @class */ (function (_super) {
         this.setState({ selectedId: id });
     };
     SectionTaskDescription.prototype.render = function () {
-        return (react_1["default"].createElement("div", null, this.companies.map(function (el) {
+        var el = this.props;
+        return (react_1["default"].createElement("div", null,
             react_1["default"].createElement("div", { className: "taskDescription" },
                 react_1["default"].createElement("div", { className: "taskHeader" },
                     react_1["default"].createElement("div", { className: "taskHeaderDiv" },
@@ -41,8 +40,7 @@ var SectionTaskDescription = /** @class */ (function (_super) {
                         " to"),
                     react_1["default"].createElement("div", { className: "finsshDate" }, el.dateFinish)),
                 react_1["default"].createElement("div", { className: "taskDescrText" }, el.textfirst),
-                react_1["default"].createElement("div", { className: "taskDescrText" }, el.textsecond));
-        })));
+                react_1["default"].createElement("div", { className: "taskDescrText" }, el.textsecond))));
     };
     return SectionTaskDescription;
 }(react_1.Component));
