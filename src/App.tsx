@@ -4,6 +4,8 @@ import Context, { IState, TYPE } from "./reducer/selected";
 import CalendarMonth from "./component/calendarMonth/calendarMonth";
 import CalendarDay from "./component/calendarDay/calendarDay";
 import CalendarHeader from "./component/calendarHeader/calendarHeader";
+import SectionTaskDescription from "./component/sectionTaskDescriptoin/sectionTasktDescription";
+
 import "./index.sass";
 
 export default class App extends Component<{}, IState> {
@@ -26,6 +28,7 @@ export default class App extends Component<{}, IState> {
 			<div>
 				<CalendarHeader />
 				{selected === TYPE.MONTH ? <CalendarMonth /> : <CalendarDay />}
+				<SectionTaskDescription />
 			</div>
 		);
 	}
