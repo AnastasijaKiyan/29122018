@@ -1,10 +1,11 @@
 import React, { Component, useReducer } from "react";
+import { Moment } from "moment";
 import SectionTaskDescription from "./sectionTaskDescriptoin/sectionTasktDescription";
 import ICompany from "../../../../../type/ICompany";
 import calendarDayData from "../../../../../data/calendarDayData";
 
 interface IProps {
-  day: number;
+  day: Moment;
   month?: number;
   year?: number;
 }
@@ -80,15 +81,16 @@ class SectionTask extends Component<IProps, IState> {
 
   getFilteredSection(): ICompany[] {
     let result: ICompany[] = [];
-    this.sections.forEach(item => {
-      let dateStart = new Date(item.dateStart * 1000); // Конвертация из unix_timestamp
-      dateStart = new Date(dateStart.getFullYear(), dateStart.getMonth(), dateStart.getDate())
-      let dateFinish = new Date(item.dateFinish * 1000); // Конвертация из unix_timestamp
-      dateFinish = new Date(dateFinish.getFullYear(), dateFinish.getMonth(), dateFinish.getDate());
-      dateFinish.setDate(dateFinish.getDate() + 1);
-      let dateCurrent = new Date(/*this.props.year*/ 2019, /*this.props.month*/ 0, this.props.day);
-      if (dateCurrent >= dateStart && dateCurrent < dateFinish) result.push(item);
-    });
+    // this.sections.forEach(item => {
+    //   // console.log(item)
+    //   let dateStart = new Date(item.dateStart * 1000); // Конвертация из unix_timestamp
+    //   dateStart = new Date(dateStart.getFullYear(), dateStart.getMonth(), dateStart.getDate())
+    //   let dateFinish = new Date(item.dateFinish * 1000); // Конвертация из unix_timestamp
+    //   dateFinish = new Date(dateFinish.getFullYear(), dateFinish.getMonth(), dateFinish.getDate());
+    //   dateFinish.setDate(dateFinish.getDate() + 1);
+    //   let dateCurrent = new Date(/*this.props.year*/ 2019, /*this.props.month*/ 0, this.props.day);
+    //   if (dateCurrent >= dateStart && dateCurrent < dateFinish) result.push(item);
+    // });
     return result;
   }
 }
