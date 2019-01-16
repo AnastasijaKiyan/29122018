@@ -58,7 +58,6 @@ import times from "lodash/times";
 
 export function getMonth(monthNumber: string): Moment[][] {
 	const month = [];
-	let i = 1;
 	let week = [];
 	let day = moment(`2019-${monthNumber}-01`);
 	let weekDay = day.day();
