@@ -214,14 +214,18 @@ function (_Component) {
     key: "validator",
     value: function validator(data) {
       data.forEach(function (item) {
-        // if (item.tenSecond < 1)
-        //   throw Error("Property 'tenSecond' can't be less than 1.");
-        // if (item.tenSecond > 18)
-        //   throw Error("Property 'tenSecond' can't be more than 18.");
-        if (item.dateStart < 1) throw Error("Property 'hourStart' can't be less than 1.");
-        if (item.dateStart > 24) throw Error("Property 'hourStart' can't be more than 24.");
-        if (item.dateFinish < 1) throw Error("Property 'hourFinish' can't be less than 1.");
-        if (item.dateFinish > 24) throw Error("Property 'hourFinish' can't be more than 24.");
+        /* if (item.tenSecond < 1)
+          throw Error("Property 'tenSecond' can't be less than 1.");
+        if (item.tenSecond > 18)
+          throw Error("Property 'tenSecond' can't be more than 18.");
+        if (item.dateStart < 1)
+          throw Error("Property 'hourStart' can't be less than 1.");
+        if (item.dateStart > 24)
+          throw Error("Property 'hourStart' can't be more than 24.");
+        if (item.dateFinish < 1)
+          throw Error("Property 'hourFinish' can't be less than 1.");
+        if (item.dateFinish > 24)
+          throw Error("Property 'hourFinish' can't be more than 24.");*/
         if (item.dateStart > item.dateFinish) throw Error("Property 'hourStart' can't be more than property 'hourFinish'.");
       });
     }
@@ -451,7 +455,12 @@ function (_Component) {
         onClick: function onClick(e) {
           return _this2.press(_this2.props.day, e);
         }
-      }, this.props.day), _react.default.createElement(_sectionTask.default, null));
+      }, this.props.day), _react.default.createElement(_sectionTask.default, {
+        key: this.props.day,
+        day: this.props.day,
+        month: this.props.month,
+        year: this.props.year
+      }));
     }
   }]);
 
@@ -510,7 +519,7 @@ function (_Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "sections", _calendarDayData.default);
 
     _this.state = {
-      selectedId: 15,
+      selectedId: 0,
       isOpened: false
     };
     return _this;
@@ -520,7 +529,8 @@ function (_Component) {
     key: "press",
     value: function press(id, e) {
       this.setState({
-        selectedId: id
+        selectedId: id,
+        isOpened: true
       });
     }
   }, {
@@ -528,25 +538,55 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
+      var sectionsFiltered = this.getFilteredSection();
+      var isOpened = this.state.isOpened;
       var cheked = this.state.selectedId;
       var maxLength = 4;
-      return _react.default.createElement("div", {
-        className: "allSectionTasks"
-      }, this.sections.map(function (item, index) {
-        if (index < maxLength) {
-          return _react.default.createElement("div", null, _react.default.createElement("div", {
-            key: item.id,
-            className: "sectionTaskItem",
-            onClick: function onClick(e) {
-              return _this2.press(item.id, e);
-            }
-          }, item.name));
-        } else if (index > maxLength) {
-          return null;
-        } else {}
-      }), _react.default.createElement("div", {
-        className: this.sections.length > maxLength ? "hoveredTask" : "hoveredTask hide"
-      }, this.sections.length - maxLength, " more..."));
+      return (// <div>
+        //   {this.sections.map((item: ICompany, index: number) => {
+        //     if (item.dateStart == 1) {
+        //     }
+        _react.default.createElement("div", {
+          className: "allSectionTasks"
+        }, sectionsFiltered.map(function (item, index) {
+          if (index < maxLength) {
+            return _react.default.createElement("div", null, _react.default.createElement("div", {
+              key: item.id,
+              className: item.id == cheked ? "sectionTaskItem pressed" : "sectionTaskItem",
+              onClick: function onClick(e) {
+                return _this2.press(item.id, e);
+              }
+            }, item.name));
+          } else if (index > maxLength) {
+            return null;
+          } else {}
+        }), _react.default.createElement("div", {
+          className: sectionsFiltered.length > maxLength ? "hoveredTask" : "hoveredTask hide"
+        }, sectionsFiltered.length - maxLength, " more..."))
+      ); //</div>
+    }
+  }, {
+    key: "getFilteredSection",
+    value: function getFilteredSection() {
+      var _this3 = this;
+
+      var result = [];
+      this.sections.forEach(function (item) {
+        var dateStart = new Date(item.dateStart * 1000); // Конвертация из unix_timestamp
+
+        dateStart = new Date(dateStart.getFullYear(), dateStart.getMonth(), dateStart.getDate());
+        var dateFinish = new Date(item.dateFinish * 1000); // Конвертация из unix_timestamp
+
+        dateFinish = new Date(dateFinish.getFullYear(), dateFinish.getMonth(), dateFinish.getDate());
+        dateFinish.setDate(dateFinish.getDate() + 1);
+        var dateCurrent = new Date(
+        /*this.props.year*/
+        2019,
+        /*this.props.month*/
+        0, _this3.props.day);
+        if (dateCurrent >= dateStart && dateCurrent < dateFinish) result.push(item);
+      });
+      return result;
     }
   }]);
 
@@ -564,10 +604,6 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _calendarDayData = _interopRequireDefault(require("../../../../../../data/calendarDayData"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -580,31 +616,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+;
 
 var SectionTaskDescription =
 /*#__PURE__*/
 function (_Component) {
   _inherits(SectionTaskDescription, _Component);
 
-  //private myCompany: ICompany = this.companies.map((el: ICompany, index: number, arr: ICompany[]) => el);
   function SectionTaskDescription(props) {
     var _this;
 
     _classCallCheck(this, SectionTaskDescription);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SectionTaskDescription).call(this, props));
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "companies", _calendarDayData.default);
-
     _this.state = {
       selectedId: 15
     };
@@ -621,31 +653,30 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return _react.default.createElement("div", null, this.companies.map(function (el) {
-        _react.default.createElement("div", {
-          className: "taskDescription"
-        }, _react.default.createElement("div", {
-          className: "taskHeader"
-        }, _react.default.createElement("div", {
-          className: "taskHeaderDiv"
-        }, _react.default.createElement("div", {
-          className: "taskCompanyName"
-        }, el.name), _react.default.createElement("div", {
-          className: "taskUserName"
-        }, el.author)), _react.default.createElement("div", {
-          className: "taskBtn"
-        })), _react.default.createElement("div", {
-          className: "taskDate"
-        }, _react.default.createElement("div", {
-          className: "startDate"
-        }, el.dateStart, " to"), _react.default.createElement("div", {
-          className: "finsshDate"
-        }, el.dateFinish)), _react.default.createElement("div", {
-          className: "taskDescrText"
-        }, el.textfirst), _react.default.createElement("div", {
-          className: "taskDescrText"
-        }, el.textsecond));
-      }));
+      var el = this.props;
+      return _react.default.createElement("div", null, _react.default.createElement("div", {
+        className: "taskDescription"
+      }, _react.default.createElement("div", {
+        className: "taskHeader"
+      }, _react.default.createElement("div", {
+        className: "taskHeaderDiv"
+      }, _react.default.createElement("div", {
+        className: "taskCompanyName"
+      }, el.name), _react.default.createElement("div", {
+        className: "taskUserName"
+      }, el.author)), _react.default.createElement("div", {
+        className: "taskBtn"
+      })), _react.default.createElement("div", {
+        className: "taskDate"
+      }, _react.default.createElement("div", {
+        className: "startDate"
+      }, el.dateStart, " to"), _react.default.createElement("div", {
+        className: "finsshDate"
+      }, el.dateFinish)), _react.default.createElement("div", {
+        className: "taskDescrText"
+      }, el.textfirst), _react.default.createElement("div", {
+        className: "taskDescrText"
+      }, el.textsecond)));
     }
   }]);
 
@@ -1188,7 +1219,7 @@ function (_Component) {
   _createClass(CalendarMonth, [{
     key: "render",
     value: function render() {
-      var d = (0, _storage.month)(6);
+      var d = (0, _storage.month)(11);
       return _react.default.createElement("div", {
         className: "calendarMonth"
       }, _react.default.createElement(_calendarHeader.default, null), _react.default.createElement(_calendarBody.default, {
@@ -1210,8 +1241,10 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var calendarDayData = [{
   id: 1,
-  dateStart: 1546948800,
-  dateFinish: 1547078399,
+  dateStart: 1546300800,
+  // 01-01-2019
+  dateFinish: 1548115200,
+  // 22-01-2019
   name: "Coca-Cola",
   author: "BatMan",
   textfirst: "Some Text Some Text",
@@ -1219,7 +1252,9 @@ var calendarDayData = [{
 }, {
   id: 2,
   dateStart: 1547078400,
+  // 10-01-2019
   dateFinish: 1547294400,
+  // 12-01-2019
   name: "Pepsi",
   author: "BatMan",
   textfirst: "Some Text Some Text",
@@ -1227,7 +1262,9 @@ var calendarDayData = [{
 }, {
   id: 3,
   dateStart: 1548028800,
+  // 21-01-2019
   dateFinish: 1548072000,
+  // 21-01-2019
   name: "7up",
   author: "PacBack",
   textfirst: "Some Text Some Text",
@@ -1236,7 +1273,7 @@ var calendarDayData = [{
   id: 4,
   dateStart: 1548079200,
   dateFinish: 1548079800,
-  name: "7up",
+  name: "8up",
   author: "PacBack",
   textfirst: "Some Text Some Text",
   textsecond: "Some Text Some Text"
@@ -1244,7 +1281,7 @@ var calendarDayData = [{
   id: 5,
   dateStart: 1548075600,
   dateFinish: 1548077400,
-  name: "7up",
+  name: "9up",
   author: "PacBack",
   textfirst: "Some Text Some Text",
   textsecond: "Some Text Some Text"
@@ -1252,7 +1289,7 @@ var calendarDayData = [{
   id: 6,
   dateStart: 1548108000,
   dateFinish: 1548111600,
-  name: "7up",
+  name: "10up",
   author: "PacBack",
   textfirst: "Some Text Some Text",
   textsecond: "Some Text Some Text"

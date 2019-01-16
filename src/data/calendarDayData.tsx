@@ -54,6 +54,32 @@ let calendarDayData: ICompany[] = [
     author: "PacBack",
     textfirst: "Some Text Some Text",
     textsecond: "Some Text Some Text"
+  },
+  {
+    id: 7,
+    dateStart: 1548090000,
+    dateFinish: 1548090060,
+    name: "10up",
+    author: "PacBack",
+    textfirst: "Some Text Some Text",
+    textsecond: "Some Text Some Text"
+  },
+  {
+    id: 8,
+    dateStart: 1548064980,
+    dateFinish: 1548065040,
+    name: "10up",
+    author: "PacBack",
+    textfirst: "Some Text Some Text",
+    textsecond: "Some Text Some Text"
+  },{
+    id: 9,
+    dateStart: 1548100800,
+    dateFinish: 1548100820,
+    name: "10up",
+    author: "PacBack",
+    textfirst: "Some Text Some Text",
+    textsecond: "Some Text Some Text"
   }
 ]
 

@@ -38,11 +38,6 @@ class SectionTask extends Component<IProps, IState> {
     let cheked: number = this.state.selectedId;
     let maxLength: number = 4;
     return (
-      // <div>
-      //   {this.sections.map((item: ICompany, index: number) => {
-      //     if (item.dateStart == 1) {
-
-      //     }
         <div className="allSectionTasks">
         {sectionsFiltered.map((item: ICompany, index: number) => {
           if (index < maxLength) {
@@ -54,9 +49,9 @@ class SectionTask extends Component<IProps, IState> {
                   onClick={e => this.press(item.id, e)}
                 >
                   {item.name}
-                  {/* <SectionTaskDescription key={item.id} id={item.id} name={item.name} author={item.author} textfirst={item.textfirst} 
+                  <SectionTaskDescription key={item.id} id={item.id} name={item.name} author={item.author} textfirst={item.textfirst} 
                 textsecond={item.textsecond} dateStart={item.dateStart} dateFinish={item.dateFinish} 
-                className={isOpened ? "displayedSectionTaskDescription":"hideSectionTaskDescription" }/> */}
+                className={isOpened ? "displayedSectionTaskDescription":"hideSectionTaskDescription" }/>
                 </div>
               </div>
             );

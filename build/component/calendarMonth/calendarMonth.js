@@ -23,7 +23,7 @@ var CalendarMonth = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     CalendarMonth.prototype.render = function () {
-        var d = storage_1.month(6);
+        var d = storage_1.month(11);
         return (react_1["default"].createElement("div", { className: "calendarMonth" },
             react_1["default"].createElement(calendarHeader_1["default"], null),
             react_1["default"].createElement(calendarBody_1["default"], { days: d })));

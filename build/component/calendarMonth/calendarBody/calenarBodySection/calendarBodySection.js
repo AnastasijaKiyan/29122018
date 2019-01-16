@@ -30,7 +30,7 @@ var CalendarBodySection = /** @class */ (function (_super) {
         var _this = this;
         return (react_1["default"].createElement("div", { className: "calendarBodySection" },
             react_1["default"].createElement("div", { className: this.state.selectedId == this.props.day ? "day calendarDayActive" : "day", onClick: function (e) { return _this.press(_this.props.day, e); } }, this.props.day),
-            react_1["default"].createElement(sectionTask_1["default"], null)));
+            react_1["default"].createElement(sectionTask_1["default"], { key: this.props.day, day: this.props.day, month: this.props.month, year: this.props.year })));
     };
     return CalendarBodySection;
 }(react_1.Component));

@@ -3,8 +3,8 @@ exports.__esModule = true;
 var calendarDayData = [
     {
         id: 1,
-        dateStart: 1546948800,
-        dateFinish: 1547078399,
+        dateStart: 1546300800,
+        dateFinish: 1548115200,
         name: "Coca-Cola",
         author: "BatMan",
         textfirst: "Some Text Some Text",

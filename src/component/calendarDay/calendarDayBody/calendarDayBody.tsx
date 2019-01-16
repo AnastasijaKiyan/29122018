@@ -16,18 +16,6 @@ class CalendarDayBody extends Component<IProps> {
 
   validator(data: ICompany[]): void {
     data.forEach(item => {
-      /* if (item.tenSecond < 1)
-        throw Error("Property 'tenSecond' can't be less than 1.");
-      if (item.tenSecond > 18)
-        throw Error("Property 'tenSecond' can't be more than 18.");
-      if (item.dateStart < 1)
-        throw Error("Property 'hourStart' can't be less than 1.");
-      if (item.dateStart > 24)
-        throw Error("Property 'hourStart' can't be more than 24.");
-      if (item.dateFinish < 1)
-        throw Error("Property 'hourFinish' can't be less than 1.");
-      if (item.dateFinish > 24)
-        throw Error("Property 'hourFinish' can't be more than 24.");*/
       if (item.dateStart > item.dateFinish)
         throw Error("Property 'hourStart' can't be more than property 'hourFinish'.");
     });

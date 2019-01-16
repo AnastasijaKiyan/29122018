@@ -5,7 +5,7 @@ import { month } from "./../../data/storage";
 
 class CalendarMonth extends Component {
   render() {
-    let d: number[][] = month(11) as number[][];
+    let d: number[][] = month(6) as number[][];
     return (
       <div className="calendarMonth">
         <CalendarHeader/>

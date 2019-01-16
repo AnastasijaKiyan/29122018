@@ -14,7 +14,6 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var react_1 = require("react");
-var sectionTasktDescription_1 = require("./sectionTaskDescriptoin/sectionTasktDescription");
 var calendarDayData_1 = require("../../../../../data/calendarDayData");
 var SectionTask = /** @class */ (function (_super) {
     __extends(SectionTask, _super);
@@ -35,32 +34,48 @@ var SectionTask = /** @class */ (function (_super) {
     };
     SectionTask.prototype.render = function () {
         var _this = this;
+        var sectionsFiltered = this.getFilteredSection();
         var isOpened = this.state.isOpened;
         var cheked = this.state.selectedId;
         var maxLength = 4;
-        return (react_1["default"].createElement("div", null, this.sections.map(function (item, index) {
-            if (item.dateStart == ) {
-            }
-            react_1["default"].createElement("div", { className: "allSectionTasks" },
-                _this.sections.map(function (item, index) {
-                    if (index < maxLength) {
-                        return (react_1["default"].createElement("div", null,
-                            react_1["default"].createElement("div", { key: item.id, className: item.id == cheked ? "sectionTaskItem pressed" : "sectionTaskItem", onClick: function (e) { return _this.press(item.id, e); } },
-                                item.name,
-                                react_1["default"].createElement(sectionTasktDescription_1["default"], { key: item.id, id: item.id, name: item.name, author: item.author, textfirst: item.textfirst, textsecond: item.textsecond, dateStart: item.dateStart, dateFinish: item.dateFinish, className: isOpened ? "displayedSectionTaskDescription" : "hideSectionTaskDescription" }))));
-                    }
-                    else if (index > maxLength) {
-                        return null;
-                    }
-                    else {
-                    }
-                }),
-                react_1["default"].createElement("div", { className: _this.sections.length > maxLength
-                        ? "hoveredTask"
-                        : "hoveredTask hide" },
-                    _this.sections.length - maxLength,
-                    " more..."));
-        })));
+        return (
+        // <div>
+        //   {this.sections.map((item: ICompany, index: number) => {
+        //     if (item.dateStart == 1) {
+        //     }
+        react_1["default"].createElement("div", { className: "allSectionTasks" },
+            sectionsFiltered.map(function (item, index) {
+                if (index < maxLength) {
+                    return (react_1["default"].createElement("div", null,
+                        react_1["default"].createElement("div", { key: item.id, className: item.id == cheked ? "sectionTaskItem pressed" : "sectionTaskItem", onClick: function (e) { return _this.press(item.id, e); } }, item.name)));
+                }
+                else if (index > maxLength) {
+                    return null;
+                }
+                else {
+                }
+            }),
+            react_1["default"].createElement("div", { className: sectionsFiltered.length > maxLength
+                    ? "hoveredTask"
+                    : "hoveredTask hide" },
+                sectionsFiltered.length - maxLength,
+                " more...")));
+        //</div>
+    };
+    SectionTask.prototype.getFilteredSection = function () {
+        var _this = this;
+        var result = [];
+        this.sections.forEach(function (item) {
+            var dateStart = new Date(item.dateStart * 1000); // Конвертация из unix_timestamp
+            dateStart = new Date(dateStart.getFullYear(), dateStart.getMonth(), dateStart.getDate());
+            var dateFinish = new Date(item.dateFinish * 1000); // Конвертация из unix_timestamp
+            dateFinish = new Date(dateFinish.getFullYear(), dateFinish.getMonth(), dateFinish.getDate());
+            dateFinish.setDate(dateFinish.getDate() + 1);
+            var dateCurrent = new Date(/*this.props.year*/ 2019, /*this.props.month*/ 0, _this.props.day);
+            if (dateCurrent >= dateStart && dateCurrent < dateFinish)
+                result.push(item);
+        });
+        return result;
     };
     return SectionTask;
 }(react_1.Component));
