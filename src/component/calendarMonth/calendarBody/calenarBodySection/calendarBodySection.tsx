@@ -1,48 +1,24 @@
 import React, { Component } from "react";
-import moment from "moment";
-import { IDay } from "../../../../type/IDay";
+import moment, { Moment } from "moment";
 import SectionTask from "./sectionEvent/sectionTask";
 
+import Context, { IState, TYPE } from "./../../../../reducer/selected";
+
 interface IProps {
-  day: number;
-  month?: number;
-  year?: number;
+	day: Moment;
 }
 
-type State = { selectedId: number };
-
-class CalendarBodySection extends Component<IProps, State> {
-  constructor(props: IProps) {
-    super(props);
-    this.state = { selectedId: parseInt(moment().format("DD")) };
-  }
-
-  // press(id: number, e: React.MouseEvent<HTMLDivElement>): void {
-  //   this.setState({ selectedId: id });
-  // }
-
-  render(): JSX.Element {
-    return (
-      <div className="calendarBodySection">
-        <div
-          className={
-            this.state.selectedId == this.props.day
-              ? "day calendarDayActive"
-              : "day"
-          }
-          //onClick={e => this.press(this.props.day, e)}
-        >
-          {this.props.day}
-        </div>
-        <SectionTask
-          key={this.props.day}
-          day={this.props.day}
-          month={this.props.month}
-          year={this.props.year}
-        />
-      </div>
-    );
-  }
+class CalendarBodySection extends Component<IProps, {}> {
+	render(): JSX.Element | null {
+		return !(this.props.day instanceof moment) ? null : (
+			<div className="calendarBodySection" onClick={Context.setDay.bind(null, this.props.day)}>
+				<div className={moment().isSame(this.props.day, "day") ? "day calendarDayActive" : "day"}>
+					{this.props.day.format("DD")}
+				</div>
+				<SectionTask key={this.props.day.unix()} day={this.props.day} />
+			</div>
+		);
+	}
 }
 
 export default CalendarBodySection;

@@ -1,18 +1,12 @@
-import React, { Component } from 'react';
-import CalendarBody from './calendarBody/calendarBody';
-import CalendarHeader from './calendarHeader/calendarHeader';
-import { month } from "./../../data/storage";
+import React, { Component } from "react";
+import CalendarBody from "./calendarBody/calendarBody";
 
-class CalendarMonth extends Component {
-  render() {
-    let d: number[][] = month(6) as number[][];
-    return (
-      <div className="calendarMonth">
-        <CalendarHeader/>
-        <CalendarBody days={d} />
-      </div>
-    );
-  }
+export default class CalendarMonth extends Component {
+	render() {
+		return (
+			<div className="calendarMonth">
+				<CalendarBody />
+			</div>
+		);
+	}
 }
-
-export default CalendarMonth;
