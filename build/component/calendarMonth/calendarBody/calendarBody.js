@@ -15,16 +15,29 @@ var __extends = (this && this.__extends) || (function () {
 exports.__esModule = true;
 var react_1 = require("react");
 var calendarBodySection_1 = require("./calenarBodySection/calendarBodySection");
+var calendar_1 = require("./../../../reducer/calendar");
 var CalendarBody = /** @class */ (function (_super) {
     __extends(CalendarBody, _super);
     function CalendarBody() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.state = calendar_1["default"].getState();
+        _this._unsubscribe = function () { };
         _this._getWeek = function (week) { return week.map(_this._getSection); };
-        _this._getSection = function (day) { return react_1["default"].createElement(calendarBodySection_1["default"], { key: day, day: day }); };
+        _this._getSection = function (day, i) { return react_1["default"].createElement(calendarBodySection_1["default"], { key: i, day: day }); };
         return _this;
     }
+    CalendarBody.prototype.componentDidMount = function () {
+        var _this = this;
+        this._unsubscribe = calendar_1["default"].subscribe(function () {
+            _this.setState(calendar_1["default"].getState());
+        });
+    };
+    CalendarBody.prototype.componentWillUnmount = function () {
+        this._unsubscribe();
+    };
     CalendarBody.prototype.render = function () {
-        return react_1["default"].createElement("div", { className: "calendarBody" }, this.props.days.map(this._getWeek));
+        var data = this.state.data;
+        return react_1["default"].createElement("div", { className: "calendarBody" }, data.map(this._getWeek));
     };
     return CalendarBody;
 }(react_1.Component));

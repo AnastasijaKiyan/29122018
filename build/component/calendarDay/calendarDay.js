@@ -16,7 +16,6 @@ exports.__esModule = true;
 var react_1 = require("react");
 var calendarDayBody_1 = require("../calendarDay/calendarDayBody/calendarDayBody");
 var calendarDayData_1 = require("../../data/calendarDayData");
-require("../../index.sass");
 var CalendarDay = /** @class */ (function (_super) {
     __extends(CalendarDay, _super);
     function CalendarDay(props) {

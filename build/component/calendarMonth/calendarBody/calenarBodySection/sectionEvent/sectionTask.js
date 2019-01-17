@@ -15,67 +15,55 @@ var __extends = (this && this.__extends) || (function () {
 exports.__esModule = true;
 var react_1 = require("react");
 var calendarDayData_1 = require("../../../../../data/calendarDayData");
+var moment = require("moment");
+var filter_1 = require("lodash/filter");
+var modal_1 = require("./../../../../../reducer/modal");
+var _MAX_LENGTH = 4;
 var SectionTask = /** @class */ (function (_super) {
     __extends(SectionTask, _super);
-    function SectionTask(props) {
-        var _this = _super.call(this, props) || this;
+    function SectionTask() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.state = modal_1["default"].getState();
+        _this._unsubscribe = function () { };
         _this.sections = calendarDayData_1["default"];
-        _this.state = {
-            selectedId: 0,
-            isOpened: false
-        };
         return _this;
     }
-    SectionTask.prototype.press = function (id, e) {
-        this.setState({
-            selectedId: id,
-            isOpened: true
+    SectionTask.prototype.componentDidMount = function () {
+        var _this = this;
+        this._unsubscribe = modal_1["default"].subscribe(function () {
+            _this.setState(modal_1["default"].getState());
         });
+    };
+    SectionTask.prototype.componentWillUnmount = function () {
+        this._unsubscribe();
+    };
+    SectionTask.prototype.press = function (item, e) {
+        e.stopPropagation();
+        modal_1["default"].open(item);
     };
     SectionTask.prototype.render = function () {
         var _this = this;
         var sectionsFiltered = this.getFilteredSection();
-        var isOpened = this.state.isOpened;
-        var cheked = this.state.selectedId;
-        var maxLength = 4;
-        return (
-        // <div>
-        //   {this.sections.map((item: ICompany, index: number) => {
-        //     if (item.dateStart == 1) {
-        //     }
-        react_1["default"].createElement("div", { className: "allSectionTasks" },
+        return (react_1["default"].createElement("div", { className: "allSectionTasks" },
             sectionsFiltered.map(function (item, index) {
-                if (index < maxLength) {
+                if (index < _MAX_LENGTH) {
+                    var cheked = _this.state.campaign ? _this.state.campaign.id === item.id : false;
                     return (react_1["default"].createElement("div", null,
-                        react_1["default"].createElement("div", { key: item.id, className: item.id == cheked ? "sectionTaskItem pressed" : "sectionTaskItem", onClick: function (e) { return _this.press(item.id, e); } }, item.name)));
+                        react_1["default"].createElement("div", { key: item.id, className: cheked ? "sectionTaskItem pressed" : "sectionTaskItem", onClick: function (e) { return _this.press(item, e); } }, item.name)));
                 }
-                else if (index > maxLength) {
+                else if (index > _MAX_LENGTH)
                     return null;
-                }
-                else {
-                }
             }),
-            react_1["default"].createElement("div", { className: sectionsFiltered.length > maxLength
-                    ? "hoveredTask"
-                    : "hoveredTask hide" },
-                sectionsFiltered.length - maxLength,
+            react_1["default"].createElement("div", { className: sectionsFiltered.length > _MAX_LENGTH ? "hoveredTask" : "hoveredTask hide" },
+                sectionsFiltered.length - _MAX_LENGTH,
                 " more...")));
-        //</div>
     };
     SectionTask.prototype.getFilteredSection = function () {
-        var _this = this;
-        var result = [];
-        this.sections.forEach(function (item) {
-            var dateStart = new Date(item.dateStart * 1000); // Конвертация из unix_timestamp
-            dateStart = new Date(dateStart.getFullYear(), dateStart.getMonth(), dateStart.getDate());
-            var dateFinish = new Date(item.dateFinish * 1000); // Конвертация из unix_timestamp
-            dateFinish = new Date(dateFinish.getFullYear(), dateFinish.getMonth(), dateFinish.getDate());
-            dateFinish.setDate(dateFinish.getDate() + 1);
-            var dateCurrent = new Date(/*this.props.year*/ 2019, /*this.props.month*/ 0, _this.props.day);
-            if (dateCurrent >= dateStart && dateCurrent < dateFinish)
-                result.push(item);
+        var current = moment(this.props.day);
+        return filter_1["default"](this.sections, function (_a) {
+            var dateStart = _a.dateStart, dateFinish = _a.dateFinish;
+            return current.diff(moment.unix(dateStart), "day") >= 0 && current.diff(moment.unix(dateFinish), "hour") <= 0;
         });
-        return result;
     };
     return SectionTask;
 }(react_1.Component));

@@ -14,16 +14,20 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var react_1 = require("react");
-var calendarBody_1 = require("./calendarBody/calendarBody");
-var CalendarMonth = /** @class */ (function (_super) {
-    __extends(CalendarMonth, _super);
-    function CalendarMonth() {
+var headerButtons_1 = require("./headerButtons/headerButtons");
+var headerTitle_1 = require("./headerTitle/headerTitle");
+var headerWeekDays_1 = require("./headerWeekDays/headerWeekDays");
+var CalendarHeader = /** @class */ (function (_super) {
+    __extends(CalendarHeader, _super);
+    function CalendarHeader() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    CalendarMonth.prototype.render = function () {
-        return (react_1["default"].createElement("div", { className: "calendarMonth" },
-            react_1["default"].createElement(calendarBody_1["default"], null)));
+    CalendarHeader.prototype.render = function () {
+        return (react_1["default"].createElement("div", { className: "calendarHeader" },
+            react_1["default"].createElement(headerButtons_1["default"], null),
+            react_1["default"].createElement(headerTitle_1["default"], null),
+            react_1["default"].createElement(headerWeekDays_1["default"], null)));
     };
-    return CalendarMonth;
+    return CalendarHeader;
 }(react_1.Component));
-exports["default"] = CalendarMonth;
+exports["default"] = CalendarHeader;

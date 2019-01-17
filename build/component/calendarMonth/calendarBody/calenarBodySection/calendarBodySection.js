@@ -16,21 +16,16 @@ exports.__esModule = true;
 var react_1 = require("react");
 var moment_1 = require("moment");
 var sectionTask_1 = require("./sectionEvent/sectionTask");
+var selected_1 = require("./../../../../reducer/selected");
 var CalendarBodySection = /** @class */ (function (_super) {
     __extends(CalendarBodySection, _super);
-    function CalendarBodySection(props) {
-        var _this = _super.call(this, props) || this;
-        _this.state = { selectedId: parseInt(moment_1["default"]().format("DD")) };
-        return _this;
+    function CalendarBodySection() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
-    CalendarBodySection.prototype.press = function (id, e) {
-        this.setState({ selectedId: id });
-    };
     CalendarBodySection.prototype.render = function () {
-        var _this = this;
-        return (react_1["default"].createElement("div", { className: "calendarBodySection" },
-            react_1["default"].createElement("div", { className: this.state.selectedId == this.props.day ? "day calendarDayActive" : "day", onClick: function (e) { return _this.press(_this.props.day, e); } }, this.props.day),
-            react_1["default"].createElement(sectionTask_1["default"], { key: this.props.day, day: this.props.day, month: this.props.month, year: this.props.year })));
+        return !(this.props.day instanceof moment_1["default"]) ? null : (react_1["default"].createElement("div", { className: "calendarBodySection", onClick: selected_1["default"].setDay.bind(null, this.props.day) },
+            react_1["default"].createElement("div", { className: moment_1["default"]().isSame(this.props.day, "day") ? "day calendarDayActive" : "day" }, this.props.day.format("DD")),
+            react_1["default"].createElement(sectionTask_1["default"], { key: this.props.day.unix(), day: this.props.day })));
     };
     return CalendarBodySection;
 }(react_1.Component));

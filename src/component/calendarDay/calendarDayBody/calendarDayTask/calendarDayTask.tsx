@@ -12,7 +12,7 @@ class CalendarDayTask extends Component<IProps> {
 
   render() {
     return (
-      <div className="calendarDayTask-full">
+      <div className="calendarDayTask">
         <div>{this.props.data.name}</div>
         <div>{this.props.data.author}</div>
       </div>

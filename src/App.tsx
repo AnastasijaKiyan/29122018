@@ -9,27 +9,27 @@ import SectionTaskDescription from "./component/sectionTaskDescriptoin/sectionTa
 import "./index.sass";
 
 export default class App extends Component<{}, IState> {
-	public state: IState = Context.getState();
-	protected _unsubscribe = () => {};
+  public state: IState = Context.getState();
+  protected _unsubscribe = () => {};
 
-	componentDidMount(): void {
-		this._unsubscribe = Context.subscribe(() => {
-			this.setState(Context.getState());
-		});
-	}
+  componentDidMount(): void {
+    this._unsubscribe = Context.subscribe(() => {
+      this.setState(Context.getState());
+    });
+  }
 
-	componentWillUnmount(): void {
-		this._unsubscribe();
-	}
+  componentWillUnmount(): void {
+    this._unsubscribe();
+  }
 
-	render(): JSX.Element {
-		const { selected } = this.state;
-		return (
-			<div>
-				<CalendarHeader />
-				{selected === TYPE.MONTH ? <CalendarMonth /> : <CalendarDay />}
-				<SectionTaskDescription />
-			</div>
-		);
-	}
+  render(): JSX.Element {
+    const { selected } = this.state;
+    return (
+      <div>
+        <CalendarHeader />
+        {selected === TYPE.MONTH ? <CalendarMonth /> : <CalendarDay />}
+        <SectionTaskDescription />
+      </div>
+    );
+  }
 }
