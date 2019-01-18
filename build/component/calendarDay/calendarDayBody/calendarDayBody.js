@@ -410,6 +410,7 @@ var CalendarDayBody = /** @class */ (function (_super) {
             "00:59:50",
             "01:00:00"
         ];
+        _this.sections = 8;
         _this.validator(props.data);
         _this.state = { taskSelectedId: 2 };
         return _this;
@@ -422,23 +423,25 @@ var CalendarDayBody = /** @class */ (function (_super) {
     };
     CalendarDayBody.prototype.render = function () {
         return (react_1["default"].createElement("div", { className: "calendarDayBody" },
-            react_1["default"].createElement("div", { className: "hourSection" },
-                react_1["default"].createElement("div", { className: "asideHour" }, "hour"),
-                react_1["default"].createElement("div", { className: "hours" }, this.hours.map(function (e) {
-                    return react_1["default"].createElement("div", { className: "hour" }, e);
-                }))),
-            react_1["default"].createElement("div", { className: "emptySection" },
-                react_1["default"].createElement("div", { className: "asideAllday" }, "allday"),
-                react_1["default"].createElement("div", { className: "body-empty" })),
-            react_1["default"].createElement("div", { className: "scrollSection" },
-                react_1["default"].createElement("div", { className: "duration" }, this.times.map(function (e) {
-                    return react_1["default"].createElement("div", { className: "asideTimeItem" }, e);
-                })),
-                react_1["default"].createElement("div", { className: "calendarDayTasks" },
-                    this.props.data.map(function (el) {
-                        return react_1["default"].createElement(calendarDayTask_1["default"], { key: el.id, data: el });
-                    }),
-                    ")"))));
+            react_1["default"].createElement("div", { className: "notScroll" },
+                react_1["default"].createElement("div", { className: "hourSection" },
+                    react_1["default"].createElement("div", { className: "asideHour" }, "hour"),
+                    react_1["default"].createElement("div", { className: "hours" }, this.hours.map(function (e) {
+                        return react_1["default"].createElement("div", { className: "hour" }, e);
+                    }))),
+                react_1["default"].createElement("div", { className: "emptySection" },
+                    react_1["default"].createElement("div", { className: "asideAllday" }, "allday"),
+                    react_1["default"].createElement("div", { className: "body-empty" }))),
+            react_1["default"].createElement("div", { className: "scroll" },
+                react_1["default"].createElement("div", { className: "scrollSection" },
+                    react_1["default"].createElement("div", { className: "duration" }, this.times.map(function (e) {
+                        return react_1["default"].createElement("div", { className: "asideTimeItem" }, e);
+                    })),
+                    react_1["default"].createElement("div", { className: "calendarDayTasks" },
+                        react_1["default"].createElement("div", { className: "calendarDayEmpty" }),
+                        this.props.data.map(function (el) {
+                            return react_1["default"].createElement(calendarDayTask_1["default"], { key: el.id, data: el });
+                        }))))));
     };
     return CalendarDayBody;
 }(react_1.Component));

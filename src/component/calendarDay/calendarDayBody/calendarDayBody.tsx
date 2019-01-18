@@ -416,7 +416,7 @@ class CalendarDayBody extends Component<IProps> {
     "01:00:00"
   ];
 
-  sections: number = 8;
+  //sections: number = 8;
 
   render() {
     return (
@@ -432,7 +432,11 @@ class CalendarDayBody extends Component<IProps> {
           </div>
           <div className="emptySection">
             <div className="asideAllday">allday</div>
-            <div className="body-empty" />
+            <div className="body-empty">
+              {this.hours.map(e => {
+                return <div className="body-empty-item" />;
+              })}
+            </div>
           </div>
         </div>
         <div className="scroll">
@@ -443,10 +447,16 @@ class CalendarDayBody extends Component<IProps> {
               })}
             </div>
             <div className="calendarDayTasks">
-              <div className="calendarDayEmpty"/>
-              {this.props.data.map(el => {
-                return <CalendarDayTask key={el.id} data={el} />;
-              })}
+              <div className="calendarDayEmpty">
+                {this.hours.map(e => {
+                  return <div className="calendarDayEmptyItem" />;
+                })}
+              </div>
+              <div className="allDayTasks">
+                {this.props.data.map(el => {
+                  return <CalendarDayTask key={el.id} data={el} />;
+                })}
+              </div>
             </div>
           </div>
         </div>

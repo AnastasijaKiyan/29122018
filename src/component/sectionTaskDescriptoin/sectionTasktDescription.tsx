@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Context, { IState } from "./../../reducer/modal";
+import moment, { Moment } from "moment";
 
 class SectionTaskDescription extends Component<{}, IState> {
 	public state: IState = Context.getState();
@@ -19,6 +20,8 @@ class SectionTaskDescription extends Component<{}, IState> {
 		Context.close();
 	}
 
+	
+
 	render(): JSX.Element | null {
 		if (this.state.campaign == null) return null;
 		const el = this.state.campaign;
@@ -30,7 +33,7 @@ class SectionTaskDescription extends Component<{}, IState> {
 							<div className="taskCompanyName">{el.name}</div>
 							<div className="taskUserName">{el.author}</div>
 						</div>
-						<div className="taskBtn" />
+						<div className="taskBtn"/>
 					</div>
 					<div className="taskDate">
 						<div className="startDate">{el.dateStart} to</div>
