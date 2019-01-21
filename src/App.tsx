@@ -26,7 +26,9 @@ export default class App extends Component<{}, IState> {
     const { selected } = this.state;
     return (
       <div>
-        <CalendarHeader />
+        <div className={selected === TYPE.DAY ? "dayWidth" : "monthWidth"}>
+         <CalendarHeader />
+         </div>
         {selected === TYPE.MONTH ? <CalendarMonth /> : <CalendarDay />}
         <SectionTaskDescription />
       </div>

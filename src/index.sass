@@ -49,10 +49,16 @@ html, body, div, span, h1, p, ol, ul, li
 body 
     background-color: $bg-btn
 
+.dayWidth
+    width: 1217px
+
+.monthWidth
+    width: 1120px
+
 
 
 .calendarHeader
-    width: 1120px
+    width: 100% //1120px
     height: 100%
     font-family: 'ubuntu-regular'
     font-size: 18px
@@ -130,12 +136,15 @@ body
             color: $color-green
 
 
-    .headerWeekDays
+.headerWeekDays
         display: flex
         height: 36px
-        width: 100%
+        width: 1120px
         background-color: $color-white
         align-items: center
+        font-family: 'ubuntu-regular'
+        font-size: 18px
+
 
 
         li
