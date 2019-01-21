@@ -53,7 +53,7 @@ body
 
 .calendarHeader
     width: 1120px
-    height: 152px
+    height: 100%
     font-family: 'ubuntu-regular'
     font-size: 18px
 
@@ -135,6 +135,7 @@ body
         height: 36px
         width: 100%
         background-color: $color-white
+        align-items: center
 
 
         li
@@ -222,7 +223,7 @@ body
     font-family: 'ubuntu-regular'
     font-size: 18px
     background-color: $color-white
-    box-shadow: 0 0 2px rgba(0,0,0,0.3)
+    box-shadow: 0 0 10px rgba(0,0,0,0.3)
     left: 30px
     top: -25px
     color: $color-extradarkgrey
@@ -365,7 +366,7 @@ body
 
     .scroll
         overflow-y: scroll
-        width: 1217px
+        width: 1234px
         
 
         .scrollSection
@@ -423,15 +424,16 @@ body
 
 .calendarDayTask-full
     width: 48px
-    height: 45px
+    height: 46px
     background-color: $color-lightgreen
     border-bottom: 2px solid $color-green
     text-align: center
     vertical-align: middle
+    outline: 1px solid $color-middlegrey
 
 .calendarDayTask-clicked
     width: 48px
-    height: 47px
+    height: 48px
     background-color: $color-green
     color: $color-white
     text-align: center

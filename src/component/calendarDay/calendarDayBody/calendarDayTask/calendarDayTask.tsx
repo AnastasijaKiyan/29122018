@@ -1,24 +1,27 @@
-import React, { Component } from 'react';
-import ICompany from '../../../../type/ICompany';
+import React, { Component } from "react";
+import ICompany from "../../../../type/ICompany";
+import arr from "../../../../data/data.New";
 
-interface IProps {
-  data: ICompany;
-}
+interface IProps {}
 
 class CalendarDayTask extends Component<IProps> {
   constructor(props: IProps) {
-    super(props)
+    super(props);
   }
+
+  myArr: any = arr;
 
   render() {
     return (
-      <div className="calendarDayTask">
-        <div>{this.props.data.name}</div>
-        <div>{this.props.data.author}</div>
+      <div>
+        {this.myArr.map((el: any) => {
+          return (
+            <div className={(el.n)?"calendarDayTask":"calendarDayTask-full"}>{el.name | el.n}</div>
+          )
+        })}
       </div>
     );
   }
 }
-
 
 export default CalendarDayTask;

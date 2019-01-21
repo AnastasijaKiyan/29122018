@@ -47,14 +47,18 @@ var SectionTask = /** @class */ (function (_super) {
         return (react_1["default"].createElement("div", { className: "allSectionTasks" },
             sectionsFiltered.map(function (item, index) {
                 if (index < _MAX_LENGTH) {
-                    var cheked = _this.state.campaign ? _this.state.campaign.id === item.id : false;
+                    var cheked = _this.state.campaign
+                        ? _this.state.campaign.id === item.id
+                        : false;
                     return (react_1["default"].createElement("div", null,
                         react_1["default"].createElement("div", { key: item.id, className: cheked ? "sectionTaskItem pressed" : "sectionTaskItem", onClick: function (e) { return _this.press(item, e); } }, item.name)));
                 }
                 else if (index > _MAX_LENGTH)
                     return null;
             }),
-            react_1["default"].createElement("div", { className: sectionsFiltered.length > _MAX_LENGTH ? "hoveredTask" : "hoveredTask hide" },
+            react_1["default"].createElement("div", { className: sectionsFiltered.length > _MAX_LENGTH
+                    ? "hoveredTask"
+                    : "hoveredTask hide" },
                 sectionsFiltered.length - _MAX_LENGTH,
                 " more...")));
     };
@@ -62,7 +66,8 @@ var SectionTask = /** @class */ (function (_super) {
         var current = moment(this.props.day);
         return filter_1["default"](this.sections, function (_a) {
             var dateStart = _a.dateStart, dateFinish = _a.dateFinish;
-            return current.diff(moment.unix(dateStart), "day") >= 0 && current.diff(moment.unix(dateFinish), "hour") <= 0;
+            return current.diff(moment.unix(dateStart), "day") >= 0 &&
+                current.diff(moment.unix(dateFinish), "hour") <= 0;
         });
     };
     return SectionTask;

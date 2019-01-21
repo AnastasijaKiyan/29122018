@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import CalendarDayTask from "./calendarDayTask/calendarDayTask";
 //import CalendarDayTimer from "./calendarDayTimer/calendarDayTimer";
 import ICompany from "../../../type/ICompany";
+import arr from "../../../data/data.New";
 
 interface IProps {
   data: ICompany[];
@@ -416,7 +417,6 @@ class CalendarDayBody extends Component<IProps> {
     "01:00:00"
   ];
 
-  //sections: number = 8;
 
   render() {
     return (
@@ -453,8 +453,8 @@ class CalendarDayBody extends Component<IProps> {
                 })}
               </div>
               <div className="allDayTasks">
-                {this.props.data.map(el => {
-                  return <CalendarDayTask key={el.id} data={el} />;
+                {this.hours.map(el => {
+                  return <CalendarDayTask/>;
                 })}
               </div>
             </div>
