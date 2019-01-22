@@ -420,7 +420,6 @@ var CalendarDayBody = /** @class */ (function (_super) {
                 throw Error("Property 'hourStart' can't be more than property 'hourFinish'.");
         });
     };
-    //sections: number = 8;
     CalendarDayBody.prototype.render = function () {
         return (react_1["default"].createElement("div", { className: "calendarDayBody" },
             react_1["default"].createElement("div", { className: "notScroll" },
@@ -443,8 +442,8 @@ var CalendarDayBody = /** @class */ (function (_super) {
                         react_1["default"].createElement("div", { className: "calendarDayEmpty" }, this.hours.map(function (e) {
                             return react_1["default"].createElement("div", { className: "calendarDayEmptyItem" });
                         })),
-                        react_1["default"].createElement("div", { className: "allDayTasks" }, this.props.data.map(function (el) {
-                            return react_1["default"].createElement(calendarDayTask_1["default"], { key: el.id, data: el });
+                        react_1["default"].createElement("div", { className: "allDayTasks" }, this.hours.map(function (el) {
+                            return react_1["default"].createElement(calendarDayTask_1["default"], null);
                         })))))));
     };
     return CalendarDayBody;

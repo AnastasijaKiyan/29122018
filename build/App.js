@@ -40,7 +40,8 @@ var App = /** @class */ (function (_super) {
     App.prototype.render = function () {
         var selected = this.state.selected;
         return (react_1["default"].createElement("div", null,
-            react_1["default"].createElement(calendarHeader_1["default"], null),
+            react_1["default"].createElement("div", { className: selected === selected_1.TYPE.DAY ? "dayWidth" : "monthWidth" },
+                react_1["default"].createElement(calendarHeader_1["default"], null)),
             selected === selected_1.TYPE.MONTH ? react_1["default"].createElement(calendarMonth_1["default"], null) : react_1["default"].createElement(calendarDay_1["default"], null),
             react_1["default"].createElement(sectionTasktDescription_1["default"], null)));
     };

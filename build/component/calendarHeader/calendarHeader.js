@@ -16,7 +16,6 @@ exports.__esModule = true;
 var react_1 = require("react");
 var headerButtons_1 = require("./headerButtons/headerButtons");
 var headerTitle_1 = require("./headerTitle/headerTitle");
-var headerWeekDays_1 = require("./headerWeekDays/headerWeekDays");
 var CalendarHeader = /** @class */ (function (_super) {
     __extends(CalendarHeader, _super);
     function CalendarHeader() {
@@ -25,8 +24,7 @@ var CalendarHeader = /** @class */ (function (_super) {
     CalendarHeader.prototype.render = function () {
         return (react_1["default"].createElement("div", { className: "calendarHeader" },
             react_1["default"].createElement(headerButtons_1["default"], null),
-            react_1["default"].createElement(headerTitle_1["default"], null),
-            react_1["default"].createElement(headerWeekDays_1["default"], null)));
+            react_1["default"].createElement(headerTitle_1["default"], null)));
     };
     return CalendarHeader;
 }(react_1.Component));

@@ -14,15 +14,18 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var react_1 = require("react");
+var data_New_1 = require("../../../../data/data.New");
 var CalendarDayTask = /** @class */ (function (_super) {
     __extends(CalendarDayTask, _super);
     function CalendarDayTask(props) {
-        return _super.call(this, props) || this;
+        var _this = _super.call(this, props) || this;
+        _this.myArr = data_New_1["default"];
+        return _this;
     }
     CalendarDayTask.prototype.render = function () {
-        return (react_1["default"].createElement("div", { className: "calendarDayTask" },
-            react_1["default"].createElement("div", null, this.props.data.name),
-            react_1["default"].createElement("div", null, this.props.data.author)));
+        return (react_1["default"].createElement("div", null, this.myArr.map(function (el) {
+            return (react_1["default"].createElement("div", { className: (el.n) ? "calendarDayTask" : "calendarDayTask-full" }, el.name | el.n));
+        })));
     };
     return CalendarDayTask;
 }(react_1.Component));

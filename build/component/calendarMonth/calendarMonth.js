@@ -15,14 +15,17 @@ var __extends = (this && this.__extends) || (function () {
 exports.__esModule = true;
 var react_1 = require("react");
 var calendarBody_1 = require("./calendarBody/calendarBody");
+var headerWeekDays_1 = require("../headerWeekDays/headerWeekDays");
 var CalendarMonth = /** @class */ (function (_super) {
     __extends(CalendarMonth, _super);
     function CalendarMonth() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     CalendarMonth.prototype.render = function () {
-        return (react_1["default"].createElement("div", { className: "calendarMonth" },
-            react_1["default"].createElement(calendarBody_1["default"], null)));
+        return (react_1["default"].createElement("div", null,
+            react_1["default"].createElement(headerWeekDays_1["default"], null),
+            react_1["default"].createElement("div", { className: "calendarMonth" },
+                react_1["default"].createElement(calendarBody_1["default"], null))));
     };
     return CalendarMonth;
 }(react_1.Component));
