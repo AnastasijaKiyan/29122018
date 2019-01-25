@@ -16,7 +16,7 @@ class CalendarDayTask extends Component<IProps> {
       <div>
         {this.myArr.map((el: any) => {
           return (
-            <div className={(el.n)?"calendarDayTask":"calendarDayTask-full"}>{el.name | el.n}</div>
+            <div className={(el.n)?"calendarDayTask":"calendarDayTask-full"}>{el.name}</div>
           )
         })}
       </div>

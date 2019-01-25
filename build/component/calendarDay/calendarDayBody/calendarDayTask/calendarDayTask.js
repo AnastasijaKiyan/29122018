@@ -24,7 +24,7 @@ var CalendarDayTask = /** @class */ (function (_super) {
     }
     CalendarDayTask.prototype.render = function () {
         return (react_1["default"].createElement("div", null, this.myArr.map(function (el) {
-            return (react_1["default"].createElement("div", { className: (el.n) ? "calendarDayTask" : "calendarDayTask-full" }, el.name | el.n));
+            return (react_1["default"].createElement("div", { className: (el.n) ? "calendarDayTask" : "calendarDayTask-full" }, el.name));
         })));
     };
     return CalendarDayTask;
