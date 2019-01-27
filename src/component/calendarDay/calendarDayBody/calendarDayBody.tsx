@@ -419,6 +419,9 @@ class CalendarDayBody extends Component<IProps> {
 
 
   render() {
+    const timeNow = new Date();
+		const minNow = timeNow.getMinutes();
+    const secNow = timeNow.getSeconds();
     return (
       <div className="calendarDayBody">
         <div className="notScroll">
@@ -442,8 +445,12 @@ class CalendarDayBody extends Component<IProps> {
         <div className="scroll">
           <div className="scrollSection">
             <div className="duration">
-              {this.times.map(e => {
-                return <div className="asideTimeItem">{e}</div>;
+              {this.times.map((e, i) => {
+                if (i == minNow * 6 + Math.floor(secNow/10) + 2) {
+                  return <div id="anchor" className="asideTimeItem red">{e}</div>;
+                } else {
+                  return <div className="asideTimeItem">{e}</div>;
+                }
               })}
             </div>
             <div className="calendarDayTasks">
@@ -462,6 +469,14 @@ class CalendarDayBody extends Component<IProps> {
         </div>
       </div>
     );
+  }
+
+  componentDidUpdate() {
+    var element = document.getElementById("anchor");
+    if (element == null) return;
+    var jump: number = element.getBoundingClientRect().top;
+    document.body.scrollTop += jump;
+    document.documentElement.scrollTop += jump;
   }
 }
 

@@ -36,8 +36,8 @@ class SectionTaskDescription extends Component<{}, IState> {
 						<div className="taskBtn"/>
 					</div>
 					<div className="taskDate">
-						<div className="startDate">{el.dateStart} to</div>
-						<div className="finsshDate">{el.dateFinish}</div>
+						<div className="startDate">{moment.unix(el.dateStart).format("LLL")} to</div>
+						<div className="finsshDate">{moment.unix(el.dateFinish).format("LLL")}</div>
 					</div>
 					<div className="taskDescrText">{el.textfirst}</div>
 					<div className="taskDescrText">{el.textsecond}</div>
