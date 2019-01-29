@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import BtnsTaskAdded from '../../btnsTaskAdded/btnTaskAdded';
+
 
 interface Button {
   id: number;
@@ -29,6 +31,7 @@ class HeaderButtons extends Component <Props, State> {
         this.buttons.map((item: Button) => <input key={item.id} className={this.state.buttonSelectedId == item.id ? "clicked" : ""}
          type="button" name={String(item.id)} value={item.name} onClick={e => this.press(item.id, e)}/>)
       }
+      <BtnsTaskAdded key="id"/>
       </div>
     );
   }

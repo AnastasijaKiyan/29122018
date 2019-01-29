@@ -15,6 +15,7 @@ var __extends = (this && this.__extends) || (function () {
 exports.__esModule = true;
 var react_1 = require("react");
 var modal_1 = require("./../../reducer/modal");
+var moment_1 = require("moment");
 var SectionTaskDescription = /** @class */ (function (_super) {
     __extends(SectionTaskDescription, _super);
     function SectionTaskDescription() {
@@ -48,9 +49,9 @@ var SectionTaskDescription = /** @class */ (function (_super) {
                     react_1["default"].createElement("div", { className: "taskBtn" })),
                 react_1["default"].createElement("div", { className: "taskDate" },
                     react_1["default"].createElement("div", { className: "startDate" },
-                        el.dateStart,
+                        moment_1["default"].unix(el.dateStart).format("LLL"),
                         " to"),
-                    react_1["default"].createElement("div", { className: "finsshDate" }, el.dateFinish)),
+                    react_1["default"].createElement("div", { className: "finsshDate" }, moment_1["default"].unix(el.dateFinish).format("LLL"))),
                 react_1["default"].createElement("div", { className: "taskDescrText" }, el.textfirst),
                 react_1["default"].createElement("div", { className: "taskDescrText" }, el.textsecond))));
     };

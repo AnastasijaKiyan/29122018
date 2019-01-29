@@ -421,6 +421,9 @@ var CalendarDayBody = /** @class */ (function (_super) {
         });
     };
     CalendarDayBody.prototype.render = function () {
+        var timeNow = new Date();
+        var minNow = timeNow.getMinutes();
+        var secNow = timeNow.getSeconds();
         return (react_1["default"].createElement("div", { className: "calendarDayBody" },
             react_1["default"].createElement("div", { className: "notScroll" },
                 react_1["default"].createElement("div", { className: "hourSection" },
@@ -435,8 +438,13 @@ var CalendarDayBody = /** @class */ (function (_super) {
                     })))),
             react_1["default"].createElement("div", { className: "scroll" },
                 react_1["default"].createElement("div", { className: "scrollSection" },
-                    react_1["default"].createElement("div", { className: "duration" }, this.times.map(function (e) {
-                        return react_1["default"].createElement("div", { className: "asideTimeItem" }, e);
+                    react_1["default"].createElement("div", { className: "duration" }, this.times.map(function (e, i) {
+                        if (i == minNow * 6 + Math.floor(secNow / 10) + 1) {
+                            return react_1["default"].createElement("div", { id: "anchor", className: "asideTimeItem red" }, e);
+                        }
+                        else {
+                            return react_1["default"].createElement("div", { className: "asideTimeItem" }, e);
+                        }
                     })),
                     react_1["default"].createElement("div", { className: "calendarDayTasks" },
                         react_1["default"].createElement("div", { className: "calendarDayEmpty" }, this.hours.map(function (e) {
@@ -445,6 +453,14 @@ var CalendarDayBody = /** @class */ (function (_super) {
                         react_1["default"].createElement("div", { className: "allDayTasks" }, this.hours.map(function (el) {
                             return react_1["default"].createElement(calendarDayTask_1["default"], null);
                         })))))));
+    };
+    CalendarDayBody.prototype.componentDidUpdate = function () {
+        var element = document.getElementById("anchor");
+        if (element == null)
+            return;
+        var jump = element.getBoundingClientRect().top;
+        document.body.scrollTop += jump;
+        document.documentElement.scrollTop += jump;
     };
     return CalendarDayBody;
 }(react_1.Component));

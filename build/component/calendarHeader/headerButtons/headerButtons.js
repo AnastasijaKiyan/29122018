@@ -14,6 +14,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var react_1 = require("react");
+var btnTaskAdded_1 = require("../../btnsTaskAdded/btnTaskAdded");
 var HeaderButtons = /** @class */ (function (_super) {
     __extends(HeaderButtons, _super);
     function HeaderButtons(props) {
@@ -28,7 +29,9 @@ var HeaderButtons = /** @class */ (function (_super) {
     };
     HeaderButtons.prototype.render = function () {
         var _this = this;
-        return (react_1["default"].createElement("div", { className: "headerButtons" }, this.buttons.map(function (item) { return react_1["default"].createElement("input", { key: item.id, className: _this.state.buttonSelectedId == item.id ? "clicked" : "", type: "button", name: String(item.id), value: item.name, onClick: function (e) { return _this.press(item.id, e); } }); })));
+        return (react_1["default"].createElement("div", { className: "headerButtons" },
+            this.buttons.map(function (item) { return react_1["default"].createElement("input", { key: item.id, className: _this.state.buttonSelectedId == item.id ? "clicked" : "", type: "button", name: String(item.id), value: item.name, onClick: function (e) { return _this.press(item.id, e); } }); }),
+            react_1["default"].createElement(btnTaskAdded_1["default"], { key: "id" })));
     };
     return HeaderButtons;
 }(react_1.Component));

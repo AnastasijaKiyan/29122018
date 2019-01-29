@@ -446,7 +446,7 @@ class CalendarDayBody extends Component<IProps> {
           <div className="scrollSection">
             <div className="duration">
               {this.times.map((e, i) => {
-                if (i == minNow * 6 + Math.floor(secNow/10) + 2) {
+                if (i == minNow * 6 + Math.floor(secNow/10) + 1) {
                   return <div id="anchor" className="asideTimeItem red">{e}</div>;
                 } else {
                   return <div className="asideTimeItem">{e}</div>;
