@@ -1,14 +1,32 @@
 import React, { Component } from 'react';
+import Context, { IState } from "./../../reducer/square";
 
 
-// squares: number = ;
+export default class Square extends Component<{}, IState> {
 
-// export default class Square extends Component<{}, IState> {
-// 	render(): JSX.Element | null {
-//     return (
-//       <div>
-//         <div className="squareclass"></div>
-//       </div>
-//     );
-//   }
-// }
+    public state: IState = Context.getState();
+    protected _unsubscribe = () => {};
+  
+    componentDidMount(): void {
+      this._unsubscribe = Context.subscribe(() => {
+        this.setState(Context.getState());
+      });
+    }
+  
+    componentWillUnmount(): void {
+      this._unsubscribe();
+    }
+  
+    press(id: number, e: React.MouseEvent<HTMLDivElement>): void {
+      Context.close();
+    }
+
+
+	render(): JSX.Element | null {
+    return (
+      <div>
+        <div className="squareclass"></div>
+      </div>
+    );
+  }
+}

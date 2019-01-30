@@ -14,10 +14,13 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var react_1 = require("react");
+var square_1 = require("../../reducer/square");
 var BtnsTaskAdded = /** @class */ (function (_super) {
     __extends(BtnsTaskAdded, _super);
-    function BtnsTaskAdded(props) {
-        var _this = _super.call(this, props) || this;
+    function BtnsTaskAdded() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.state = square_1["default"].getState();
+        _this._unsubscribe = function () { };
         _this.btnDuration = [
             { id: 1, name: 10, duration: 1 },
             { id: 2, name: 20, duration: 2 },
@@ -26,19 +29,28 @@ var BtnsTaskAdded = /** @class */ (function (_super) {
             { id: 5, name: 50, duration: 5 },
             { id: 6, name: 60, duration: 6 }
         ];
-        _this.state = { isClicked: false };
         return _this;
     }
-    BtnsTaskAdded.prototype.press = function (id, e) {
-        this.setState({ isClicked: true });
+    BtnsTaskAdded.prototype.componentDidMount = function () {
+        var _this = this;
+        this._unsubscribe = square_1["default"].subscribe(function () {
+            _this.setState(square_1["default"].getState());
+        });
+    };
+    BtnsTaskAdded.prototype.componentWillUnmount = function () {
+        this._unsubscribe();
+    };
+    BtnsTaskAdded.prototype.press = function (item, e) {
+        //e.stopPropagation();
+        square_1["default"].open(item);
     };
     BtnsTaskAdded.prototype.render = function () {
         var _this = this;
         return (react_1["default"].createElement("div", { className: "btnsTaskAdded" },
-            react_1["default"].createElement("input", { className: "quickCompaign", value: "+ Quick compaign" }),
-            react_1["default"].createElement("button", { className: "btnSave" }, "Save"),
-            react_1["default"].createElement("div", { className: "btnsDuration" }, this.btnDuration.map(function (e) {
-                return (react_1["default"].createElement("input", { className: "btnDuration", value: e.name, onClick: function (e) { return _this.press(e); } }));
+            react_1["default"].createElement("input", { type: "button", className: "quickCompaign", value: "+ Quick compaign" }),
+            react_1["default"].createElement("input", { type: "button", className: "btnSave", value: "Save" }),
+            react_1["default"].createElement("div", { className: "btnsDuration" }, this.btnDuration.map(function (btn) {
+                return (react_1["default"].createElement("input", { type: "button", key: btn.id, className: _this.state.square == true ? "btnDuration disabled" : "btnDuration", value: btn.name, onClick: function (e) { return _this.press(btn.id, e); } }));
             }))));
     };
     return BtnsTaskAdded;

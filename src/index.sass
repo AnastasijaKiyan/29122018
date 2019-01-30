@@ -56,7 +56,6 @@ body
 .monthWidth
     width: 1120px
 
-
 .btnsTaskAdded
     display: flex
     font-family: 'ubuntu-regular'
@@ -90,11 +89,8 @@ body
         font-family: 'ubuntu-regular'
         justify-content: center
 
-
-
     .btnsDuration
         display: flex
-
 
         .btnDuration
             display: flex
@@ -107,8 +103,22 @@ body
             border: none
             justify-content: center
 
-        .disadled
-            background-color: $bg-btn
+        .btnDuration:hover
+            border: 2px solid $color-green
+            transition-duration: 1s
+            background-color: $color-lightgreen
+            color: $color-green
+            box-shadow: inset 0 0 6px
+
+        // .disabled
+        //     background-color: $color-lightgreen
+
+
+.squareclass
+    width: 48px
+    height: 48px
+    background-color: $color-green
+    position: absolute
 
 
 .calendarHeader
@@ -119,12 +129,13 @@ body
 
 
     .headerButtons
-        height: 57px
-        background-color: $bg-btn
+        //height: 57px
+        //background-color: $bg-btn
 
 
         input
-            height: 100%
+            height: 57px
+            //height: 100%
             width: 144px
             border-radius: 8px 8px 0 0
             background-color: $bg-btn
@@ -367,6 +378,7 @@ body
     font-size: 10px
     font-family: 'ubuntu-regular'
 
+
     .notScroll
         height: 57px
         padding-left: 7px
@@ -425,7 +437,6 @@ body
                     width: 48px
                     height: 100%
                     outline: 1px solid $color-extralightgrey
-
 
     .scroll
         overflow-y: scroll
