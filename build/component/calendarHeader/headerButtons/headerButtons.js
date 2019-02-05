@@ -16,14 +16,15 @@ exports.__esModule = true;
 var react_1 = require("react");
 var btnTaskAdded_1 = require("../../btnsTaskAdded/btnTaskAdded");
 var selected_1 = require("../../../reducer/selected");
+//type State = { buttonSelectedId: number};
 var HeaderButtons = /** @class */ (function (_super) {
     __extends(HeaderButtons, _super);
     function HeaderButtons(props) {
         var _this = _super.call(this, props) || this;
-        //public state = Context.getState();
+        _this.state = selected_1["default"].getState();
         _this.buttons = [];
         _this._unsubscribe = function () { };
-        _this.state = { buttonSelectedId: 2, state: selected_1["default"].getState() };
+        //this.state = {buttonSelectedId: 2};
         _this.buttons.push({ id: 1, name: "Properties" }, { id: 2, name: "Calendar" }, { id: 3, name: "Logs" });
         return _this;
     }
@@ -37,13 +38,15 @@ var HeaderButtons = /** @class */ (function (_super) {
         this._unsubscribe();
     };
     HeaderButtons.prototype.press = function (id, e) {
-        this.setState({ buttonSelectedId: id });
+        // this.setState({buttonSelectedId: id});
     };
     HeaderButtons.prototype.render = function () {
         var _this = this;
-        var selected = this.state.state.selected;
+        var selected = this.state.selected;
         return (react_1["default"].createElement("div", { className: "headerButtons" },
-            this.buttons.map(function (item) { return react_1["default"].createElement("input", { key: item.id, className: _this.state.buttonSelectedId == item.id ? "clicked" : "", type: "button", name: String(item.id), value: item.name, onClick: function (e) { return _this.press(item.id, e); } }); }),
+            this.buttons.map(function (item) { return react_1["default"].createElement("input", { key: item.id, 
+                // className={this.state.buttonSelectedId == item.id ? "clicked" : ""}
+                type: "button", name: String(item.id), value: item.name, onClick: function (e) { return _this.press(item.id, e); } }); }),
             selected === selected_1.TYPE.MONTH ? "" : react_1["default"].createElement(btnTaskAdded_1["default"], { key: "id" })));
     };
     return HeaderButtons;

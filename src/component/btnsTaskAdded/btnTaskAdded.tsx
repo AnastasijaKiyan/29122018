@@ -1,38 +1,11 @@
 import React, { Component } from "react";
 import Context, { IState } from "../../reducer/square";
 
-interface Button {
+export interface ButtonDuration {
   id: number;
   name: number;
-  duration?: number
+  duration: number
 }
-
-// type State = {
-//   selectedId: number;
-//   isClicked: boolean;
-// };
-
-// export default class BtnsTaskAdded extends Component<{}, State> {
-//   constructor(props: any) {
-//     super(props);
-//     this.state = {isClicked: false, selectedId: 2 };
-//   }
-
-
-//   btnDuration: Button[] = [
-//     {id: 1, name: 10, duration: 1},
-//     {id: 2, name: 20, duration: 2},
-//     {id: 3, name: 30, duration: 3},
-//     {id: 4, name: 40, duration: 4},
-//     {id: 5, name: 50, duration: 5},
-//     {id: 6, name: 60, duration: 6} 
-//   ];
-
-//   press(id: number, e: React.MouseEvent<HTMLInputElement>):void {
-//     this.setState({isClicked: true, selectedId: id});
-//     console.log(id)
-    
-//   }
 
 interface IProps {
 }
@@ -54,7 +27,7 @@ export default class BtnsTaskAdded extends Component<IProps, {}> {
     this._unsubscribe();
   }
 
-  private btnDuration: Button[] = [
+  private btnDuration: ButtonDuration[] = [
         {id: 1, name: 10, duration: 1},
         {id: 2, name: 20, duration: 2},
         {id: 3, name: 30, duration: 3},
@@ -63,8 +36,8 @@ export default class BtnsTaskAdded extends Component<IProps, {}> {
         {id: 6, name: 60, duration: 6} 
       ];
 
-  press(item: any, e: React.MouseEvent<HTMLDivElement>): void {
-    //e.stopPropagation();
+  press(item: ButtonDuration, e: React.MouseEvent<HTMLDivElement>): void {
+    e.stopPropagation();
 		Context.open(item);
   }
 
@@ -76,10 +49,12 @@ export default class BtnsTaskAdded extends Component<IProps, {}> {
         <input type="button" className="btnSave" value="Save"/>
         <div className="btnsDuration">
           {
-            this.btnDuration.map((btn: Button) => {
+            this.btnDuration.map((item: ButtonDuration) => {
+            let cheked: boolean = this.state.square ? this.state.square.id === item.id
+            : false;
             return(
-            <input type="button" key={btn.id} className={this.state.square == true ? "btnDuration disabled" : "btnDuration"} 
-            value={btn.name} onClick={ e => this.press(btn.id, e)} />
+            <input type="button" key={item.id} className={this.state.square == true ? "btnDuration disabled" : "btnDuration"} 
+            value={item.name} onClick={ e => this.press(item, e)} />
             )
           })
           }

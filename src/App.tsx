@@ -7,6 +7,8 @@ import CalendarHeader from "./component/calendarHeader/calendarHeader";
 import SectionTaskDescription from "./component/sectionTaskDescriptoin/sectionTasktDescription";
 
 import "./index.sass";
+import BtnsTaskAdded from './component/btnsTaskAdded/btnTaskAdded';
+import Square from "./component/square/square";
 
 export default class App extends Component<{}, IState> {
   public state: IState = Context.getState();
@@ -31,6 +33,7 @@ export default class App extends Component<{}, IState> {
          </div>
         {selected === TYPE.MONTH ? <CalendarMonth /> : <CalendarDay />}
         <SectionTaskDescription />
+        <Square />
       </div>
     );
   }

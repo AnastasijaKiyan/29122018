@@ -20,7 +20,6 @@ class SectionTaskDescription extends Component<{}, IState> {
 		Context.close();
 	}
 
-	
 
 	render(): JSX.Element | null {
 		if (this.state.campaign == null) return null;

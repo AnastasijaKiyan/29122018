@@ -1,8 +1,10 @@
 import { createStore, Store, Reducer, Action } from "redux";
 import Square from "../component/square/square";
+import BtnsTaskAdded from '../component/btnsTaskAdded/btnTaskAdded';
+
 
 export interface IState {
-	square: any | null;
+	square: BtnsTaskAdded | null;
 	isOpen: boolean;
 }
 
@@ -15,7 +17,7 @@ enum ACTION {
 interface IAction extends Action<ACTION>, IState {}
 
 interface IMutation extends Store<IState> {
-	open: (square: any) => void;
+	open: (square: BtnsTaskAdded) => void;
 	close(): void;
 	reset(): void;
 }
@@ -43,8 +45,8 @@ store.reset = (): void => {
 	store.dispatch({ type: ACTION.RESET });
 };
 
-store.open = (campaign: any): void => {
-	store.dispatch({ type: ACTION.OPEN, campaign });
+store.open = (square: any): void => {
+	store.dispatch({ type: ACTION.OPEN, square });
 };
 
 store.close = (): void => {

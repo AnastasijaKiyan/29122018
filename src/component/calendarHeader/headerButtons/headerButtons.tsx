@@ -46,7 +46,8 @@ class HeaderButtons extends Component <Props, IState> {
       <div className="headerButtons">
       {
         this.buttons.map((item: Button) => <input key={item.id} 
-        // className={this.state.buttonSelectedId == item.id ? "clicked" : ""}
+        // className={this.state.buttonSelectedId == item.id ? "clicked" : ""} 
+        className="input"
          type="button" name={String(item.id)} value={item.name} onClick={e => this.press(item.id, e)}/>)
       }
       {selected === TYPE.MONTH ? "" : <BtnsTaskAdded key="id"/>}
