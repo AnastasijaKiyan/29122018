@@ -38,8 +38,8 @@ var store = redux_1.createStore(reducer);
 store.reset = function () {
     store.dispatch({ type: ACTION.RESET });
 };
-store.open = function (campaign) {
-    store.dispatch({ type: ACTION.OPEN, campaign: campaign });
+store.open = function (square) {
+    store.dispatch({ type: ACTION.OPEN, square: square });
 };
 store.close = function () {
     store.dispatch({ type: ACTION.CLOSE });

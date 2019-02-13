@@ -20,6 +20,7 @@ var calendarDay_1 = require("./component/calendarDay/calendarDay");
 var calendarHeader_1 = require("./component/calendarHeader/calendarHeader");
 var sectionTasktDescription_1 = require("./component/sectionTaskDescriptoin/sectionTasktDescription");
 require("./index.sass");
+var square_1 = require("./component/square/square");
 var App = /** @class */ (function (_super) {
     __extends(App, _super);
     function App() {
@@ -43,7 +44,8 @@ var App = /** @class */ (function (_super) {
             react_1["default"].createElement("div", { className: selected === selected_1.TYPE.DAY ? "dayWidth" : "monthWidth" },
                 react_1["default"].createElement(calendarHeader_1["default"], null)),
             selected === selected_1.TYPE.MONTH ? react_1["default"].createElement(calendarMonth_1["default"], null) : react_1["default"].createElement(calendarDay_1["default"], null),
-            react_1["default"].createElement(sectionTasktDescription_1["default"], null)));
+            react_1["default"].createElement(sectionTasktDescription_1["default"], null),
+            react_1["default"].createElement(square_1["default"], null)));
     };
     return App;
 }(react_1.Component));

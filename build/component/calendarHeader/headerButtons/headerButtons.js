@@ -45,8 +45,8 @@ var HeaderButtons = /** @class */ (function (_super) {
         var selected = this.state.selected;
         return (react_1["default"].createElement("div", { className: "headerButtons" },
             this.buttons.map(function (item) { return react_1["default"].createElement("input", { key: item.id, 
-                // className={this.state.buttonSelectedId == item.id ? "clicked" : ""}
-                type: "button", name: String(item.id), value: item.name, onClick: function (e) { return _this.press(item.id, e); } }); }),
+                // className={this.state.buttonSelectedId == item.id ? "clicked" : ""} 
+                className: "input", type: "button", name: String(item.id), value: item.name, onClick: function (e) { return _this.press(item.id, e); } }); }),
             selected === selected_1.TYPE.MONTH ? "" : react_1["default"].createElement(btnTaskAdded_1["default"], { key: "id" })));
     };
     return HeaderButtons;

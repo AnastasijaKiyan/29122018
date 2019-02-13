@@ -15,6 +15,7 @@ var __extends = (this && this.__extends) || (function () {
 exports.__esModule = true;
 var react_1 = require("react");
 var square_1 = require("../../reducer/square");
+var btnQuickCompaign_1 = require("../btnQuickCompaign/btnQuickCompaign");
 var BtnsTaskAdded = /** @class */ (function (_super) {
     __extends(BtnsTaskAdded, _super);
     function BtnsTaskAdded() {
@@ -41,16 +42,17 @@ var BtnsTaskAdded = /** @class */ (function (_super) {
         this._unsubscribe();
     };
     BtnsTaskAdded.prototype.press = function (item, e) {
-        //e.stopPropagation();
-        square_1["default"].open(item);
+        e.stopPropagation();
+        //Context.open();
     };
     BtnsTaskAdded.prototype.render = function () {
         var _this = this;
         return (react_1["default"].createElement("div", { className: "btnsTaskAdded" },
-            react_1["default"].createElement("input", { type: "button", className: "quickCompaign", value: "+ Quick compaign" }),
+            react_1["default"].createElement(btnQuickCompaign_1["default"], null),
             react_1["default"].createElement("input", { type: "button", className: "btnSave", value: "Save" }),
-            react_1["default"].createElement("div", { className: "btnsDuration" }, this.btnDuration.map(function (btn) {
-                return (react_1["default"].createElement("input", { type: "button", key: btn.id, className: _this.state.square == true ? "btnDuration disabled" : "btnDuration", value: btn.name, onClick: function (e) { return _this.press(btn.id, e); } }));
+            react_1["default"].createElement("div", { className: "btnsDuration" }, this.btnDuration.map(function (item) {
+                //let cheked: boolean = this.state.square ? this.state.square.id === item.id : false;
+                return (react_1["default"].createElement("input", { type: "button", key: item.id, className: "btnDuration", value: item.name, onClick: function (e) { return _this.press(item, e); } }));
             }))));
     };
     return BtnsTaskAdded;
