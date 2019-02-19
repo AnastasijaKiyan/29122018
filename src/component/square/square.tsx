@@ -20,6 +20,8 @@ export default class Square extends Component<{}, IState> {
   }
 
   render(): JSX.Element | null {
+    if (this.state.square == null) return null;
+		const el = this.state.square;
     return (
       <div onClick={Context.close}>
         <div className="squareclass" key="id" />

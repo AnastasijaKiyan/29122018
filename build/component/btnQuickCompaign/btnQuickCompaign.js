@@ -19,22 +19,20 @@ var BtnsQuickCompaign = /** @class */ (function (_super) {
     function BtnsQuickCompaign() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.state = {
-            selectedId: "",
             isChecked: false
         };
         return _this;
     }
-    BtnsQuickCompaign.prototype.press = function (id, e) {
-        e.stopPropagation();
+    BtnsQuickCompaign.prototype.press = function (e) {
         this.setState({
-            selectedId: id,
             isChecked: true
         });
-        console.log(id);
+        console.log(name);
     };
     BtnsQuickCompaign.prototype.render = function () {
-        return (react_1["default"].createElement("div", { className: "btnsTaskAdded" },
-            react_1["default"].createElement("input", { type: "button", id: "quickCompaign", className: "quickCompaign", value: "+ Quick compaign" })));
+        var _this = this;
+        var isChecked = this.state.isChecked;
+        return (react_1["default"].createElement("input", { type: "button", id: "quickCompaign", className: isChecked == true ? "quickCompaignHide" : "quickCompaign", value: "+ Quick compaign", onClick: function (e) { return _this.press(e); } }));
     };
     return BtnsQuickCompaign;
 }(react_1.Component));

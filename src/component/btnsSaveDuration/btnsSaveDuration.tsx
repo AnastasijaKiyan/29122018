@@ -44,7 +44,7 @@ export default class BtnsSaveDuration extends Component<IProps, {}> {
 
   render() {
     return (
-      <div className="btnsSaveDuration">
+      <div className="btnsSaveDurationHide">
         <div className="btnsDuration">
           {
             this.btnDuration.map((item: ButtonDuration) => {

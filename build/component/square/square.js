@@ -36,6 +36,9 @@ var Square = /** @class */ (function (_super) {
         square_1["default"].close();
     };
     Square.prototype.render = function () {
+        if (this.state.square == null)
+            return null;
+        var el = this.state.square;
         return (react_1["default"].createElement("div", { onClick: square_1["default"].close },
             react_1["default"].createElement("div", { className: "squareclass", key: "id" })));
     };

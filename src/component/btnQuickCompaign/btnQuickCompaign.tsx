@@ -13,21 +13,22 @@ export default class BtnsQuickCompaign extends Component<{}, IState> {
     isChecked: false
   };
 
-  press(id: string, e: React.MouseEvent<HTMLInputElement>): void {
-    e.stopPropagation();
+  press(e: React.MouseEvent<HTMLInputElement>): void {
     this.setState({
       isChecked: true
     });
-    console.log(id);
+    console.log(name);
   }
 
   render(): JSX.Element | null {
+    const { isChecked } = this.state;
     return (
         <input
           type="button"
           id="quickCompaign"
-          className="quickCompaign"
+          className= {isChecked == true ? "quickCompaignHide" : "quickCompaign"}
           value="+ Quick compaign"
+          onClick={e => this.press(e)}
         />
     );
   }

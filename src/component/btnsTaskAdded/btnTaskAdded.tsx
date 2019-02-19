@@ -4,25 +4,18 @@ import BtnsQuickCompaign from '../btnQuickCompaign/btnQuickCompaign';
 import BtnsSaveDuration from "../btnsSaveDuration/btnsSaveDuration";
 
 
-interface IProps {
+type State = {
+ 
 }
 
-export default class BtnsTaskAdded extends Component<IProps, {}> {
-  public state: IState = Context.getState();
+export default class BtnsTaskAdded extends Component<{}, State> {
+public state: State = {
+    selectedBtn: false,
+   }
 
-  protected _unsubscribe = () => {};
-
-  public componentDidMount(): void {
-    this._unsubscribe = Context.subscribe(
-      (): void => {
-        this.setState(Context.getState());
+   press(id: string, e: React.MouseEvent<HTMLInputElement>): void {
+        
       }
-    );
-  }
-
-  public componentWillUnmount(): void {
-    this._unsubscribe();
-  }
 
   render() {
     return (
