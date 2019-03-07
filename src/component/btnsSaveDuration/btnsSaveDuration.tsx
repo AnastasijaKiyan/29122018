@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Context, { IState } from "../../reducer/square";
+import Context, { IState } from "../../reducer/taskAdd";
 import BtnsQuickCompaign from '../btnQuickCompaign/btnQuickCompaign';
 
 export interface ButtonDuration {
@@ -11,7 +11,7 @@ export interface ButtonDuration {
 interface IProps {
 }
 
-export default class BtnsSaveDuration extends Component<IProps, {}> {
+export default class BtnsSaveDuration extends Component<IProps, IState> {
   public state: IState = Context.getState();
 
   protected _unsubscribe = () => {};
@@ -44,6 +44,7 @@ export default class BtnsSaveDuration extends Component<IProps, {}> {
 
   render() {
     return (
+      
       <div className="btnsSaveDurationHide">
         <div className="btnsDuration">
           {

@@ -1,10 +1,11 @@
 import { createStore, Store, Reducer, Action } from "redux";
 import Square from "../component/square/square";
 import BtnsTaskAdded from '../component/btnsTaskAdded/btnTaskAdded';
+import ICompany from "../type/ICompany";
 
 
 export interface IState {
-	square: BtnsTaskAdded | null;
+	square: ICompany | null;
 	isOpen: boolean;
 }
 

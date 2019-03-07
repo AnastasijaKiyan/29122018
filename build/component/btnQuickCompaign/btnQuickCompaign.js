@@ -14,25 +14,28 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var react_1 = require("react");
+// interface IState {
+//   isChecked: boolean;
+// }
 var BtnsQuickCompaign = /** @class */ (function (_super) {
     __extends(BtnsQuickCompaign, _super);
     function BtnsQuickCompaign() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.state = {
-            isChecked: false
+            isOpen: false
         };
         return _this;
     }
     BtnsQuickCompaign.prototype.press = function (e) {
         this.setState({
-            isChecked: true
+            isOpen: true
         });
         console.log(name);
     };
     BtnsQuickCompaign.prototype.render = function () {
         var _this = this;
-        var isChecked = this.state.isChecked;
-        return (react_1["default"].createElement("input", { type: "button", id: "quickCompaign", className: isChecked == true ? "quickCompaignHide" : "quickCompaign", value: "+ Quick compaign", onClick: function (e) { return _this.press(e); } }));
+        var isOpen = this.state.isOpen;
+        return (react_1["default"].createElement("input", { type: "button", id: "quickCompaign", className: isOpen == true ? "quickCompaignHide" : "quickCompaign", value: "+ Quick compaign", onClick: function (e) { return _this.press(e); } }));
     };
     return BtnsQuickCompaign;
 }(react_1.Component));

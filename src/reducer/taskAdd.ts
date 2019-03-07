@@ -2,7 +2,6 @@ import { createStore, Store, Reducer, Action } from "redux";
 import ICompany from "../type/ICompany";
 
 export interface IState {
-	square: ICompany | null;
 	isOpen: boolean;
 }
 
@@ -21,15 +20,15 @@ interface IMutation extends Store<IState> {
 }
 
 const initialState: IState = {
-	campaign: null,
+
 	isOpen: false
 };
 
 function reducer(state: IState | undefined = initialState, action: IAction): IState {
-	const { type, campaign } = action;
+	const { type } = action;
 	switch (type) {
 		case ACTION.OPEN:
-			return { campaign, isOpen: true };
+			return { isOpen: true };
 		case ACTION.CLOSE:
 		case ACTION.RESET:
 		default:

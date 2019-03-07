@@ -14,12 +14,12 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var react_1 = require("react");
-var square_1 = require("../../reducer/square");
+var taskAdd_1 = require("../../reducer/taskAdd");
 var BtnsSaveDuration = /** @class */ (function (_super) {
     __extends(BtnsSaveDuration, _super);
     function BtnsSaveDuration() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.state = square_1["default"].getState();
+        _this.state = taskAdd_1["default"].getState();
         _this._unsubscribe = function () { };
         _this.btnDuration = [
             { id: 1, name: 10, duration: 1 },
@@ -33,8 +33,8 @@ var BtnsSaveDuration = /** @class */ (function (_super) {
     }
     BtnsSaveDuration.prototype.componentDidMount = function () {
         var _this = this;
-        this._unsubscribe = square_1["default"].subscribe(function () {
-            _this.setState(square_1["default"].getState());
+        this._unsubscribe = taskAdd_1["default"].subscribe(function () {
+            _this.setState(taskAdd_1["default"].getState());
         });
     };
     BtnsSaveDuration.prototype.componentWillUnmount = function () {
